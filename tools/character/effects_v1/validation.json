@@ -1,0 +1,102 @@
+[
+  {
+    "id": "water",
+    "frames": 24,
+    "uniqueFrames": 24,
+    "gifDurationMs": 1440,
+    "periodicEndpointExact": true,
+    "atlasMatchesFrames": true,
+    "transparentCenter": true,
+    "decodedAtlasBytes": 8847360
+  },
+  {
+    "id": "fire",
+    "frames": 24,
+    "uniqueFrames": 24,
+    "gifDurationMs": 1440,
+    "periodicEndpointExact": true,
+    "atlasMatchesFrames": true,
+    "transparentCenter": true,
+    "decodedAtlasBytes": 8847360
+  },
+  {
+    "id": "electric",
+    "frames": 24,
+    "uniqueFrames": 24,
+    "gifDurationMs": 1440,
+    "periodicEndpointExact": true,
+    "atlasMatchesFrames": true,
+    "transparentCenter": true,
+    "decodedAtlasBytes": 8847360
+  },
+  {
+    "id": "rainbow",
+    "frames": 24,
+    "uniqueFrames": 24,
+    "gifDurationMs": 1440,
+    "periodicEndpointExact": true,
+    "atlasMatchesFrames": true,
+    "transparentCenter": true,
+    "decodedAtlasBytes": 8847360
+  },
+  {
+    "id": "ice",
+    "frames": 24,
+    "uniqueFrames": 24,
+    "gifDurationMs": 1440,
+    "periodicEndpointExact": true,
+    "atlasMatchesFrames": true,
+    "transparentCenter": true,
+    "decodedAtlasBytes": 8847360
+  },
+  {
+    "id": "wind",
+    "frames": 24,
+    "uniqueFrames": 24,
+    "gifDurationMs": 1440,
+    "periodicEndpointExact": true,
+    "atlasMatchesFrames": true,
+    "transparentCenter": true,
+    "decodedAtlasBytes": 8847360
+  },
+  {
+    "id": "nature",
+    "frames": 24,
+    "uniqueFrames": 24,
+    "gifDurationMs": 1440,
+    "periodicEndpointExact": true,
+    "atlasMatchesFrames": true,
+    "transparentCenter": true,
+    "decodedAtlasBytes": 8847360
+  },
+  {
+    "id": "shadow",
+    "frames": 24,
+    "uniqueFrames": 24,
+    "gifDurationMs": 1440,
+    "periodicEndpointExact": true,
+    "atlasMatchesFrames": true,
+    "transparentCenter": true,
+    "decodedAtlasBytes": 8847360
+  },
+  {
+    "id": "light",
+    "frames": 24,
+    "uniqueFrames": 24,
+    "gifDurationMs": 1440,
+    "periodicEndpointExact": true,
+    "atlasMatchesFrames": true,
+    "transparentCenter": true,
+    "decodedAtlasBytes": 8847360
+  },
+  {
+    "id": "cosmic",
+    "frames": 24,
+    "uniqueFrames": 24,
+    "gifDurationMs": 1440,
+    "periodicEndpointExact": true,
+    "atlasMatchesFrames": true,
+    "transparentCenter": true,
+    "decodedAtlasBytes": 8847360
+  }
+]

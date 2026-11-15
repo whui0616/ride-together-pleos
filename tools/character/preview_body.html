@@ -1,0 +1,357 @@
+<title>루미 리깅 벤치</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Jua&family=IBM+Plex+Sans+KR:wght@400;600&family=IBM+Plex+Mono:wght@400;600&display=swap">
+<style>
+/* 레이아웃: 왼쪽은 격자 무대(캐릭터+뼈대), 오른쪽은 작업대 패널(코디 → 포즈 → 관절). 좁으면 위아래로 쌓는다. */
+:root {
+  --bg: #EEF4F4;        /* 민트 기운 도는 종이 */
+  --panel: #FFFFFF;
+  --ink: #1F2338;       /* 코트 네이비 */
+  --sub: #5B647A;
+  --line: #D3DEE0;
+  --mint: #2BB3C4;      /* 눈동자 청록 */
+  --gold: #C99520;      /* 트림 골드 */
+  --stage: #F8FBFB;
+  --grid: #E1ECEC;
+  --bone: #E0563B;
+  --display: "Jua", "IBM Plex Sans KR", system-ui, sans-serif;
+  --body: "IBM Plex Sans KR", system-ui, -apple-system, "Malgun Gothic", sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, Consolas, monospace;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --bg: #141725; --panel: #1C2032; --ink: #EAF2F3; --sub: #A2ABC0; --line: #2E3449;
+  --mint: #5ED6E2; --gold: #E8B84A; --stage: #191D2D; --grid: #23293D; --bone: #FF7A5C; color-scheme: dark } }
+:root[data-theme="dark"] {
+  --bg: #141725; --panel: #1C2032; --ink: #EAF2F3; --sub: #A2ABC0; --line: #2E3449;
+  --mint: #5ED6E2; --gold: #E8B84A; --stage: #191D2D; --grid: #23293D; --bone: #FF7A5C; color-scheme: dark }
+* { box-sizing: border-box }
+body { background: var(--bg); color: var(--ink); font: 15px/1.55 var(--body);
+  padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); padding-block: 20px 40px }
+.wrap { max-width: 1180px; margin: 0 auto; display: grid; gap: 18px }
+header { display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px 16px }
+h1 { font: 34px/1.1 var(--display); margin: 0; letter-spacing: .01em; text-wrap: balance }
+header p { margin: 0; color: var(--sub); max-width: 62ch }
+.bench { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 420px); gap: 18px; align-items: start }
+@media (max-width: 860px) { .bench { grid-template-columns: minmax(0, 1fr) } }
+.stage { background: var(--stage); border: 1px solid var(--line); border-radius: 14px; position: relative; overflow: hidden;
+  background-image: linear-gradient(var(--grid) 1px, transparent 1px), linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+  background-size: 24px 24px; }
+.stage canvas { display: block; width: 100%; max-width: 100%; aspect-ratio: 2 / 3; touch-action: none; cursor: grab }
+.stage canvas.drag { cursor: grabbing }
+.hud { position: absolute; left: 12px; bottom: 10px; right: 12px; display: flex; justify-content: space-between; gap: 8px;
+  font: 12px var(--mono); color: var(--sub); pointer-events: none }
+.panel { background: var(--panel); border: 1px solid var(--line); border-radius: 14px; padding: 16px 18px; display: grid; gap: 16px; min-width: 0 }
+.group { display: grid; gap: 8px; min-width: 0 }
+.group h2 { margin: 0; font: 600 12px var(--body); letter-spacing: .08em; text-transform: uppercase; color: var(--sub);
+  display: flex; justify-content: space-between; align-items: baseline }
+.group h2 small { font: 11px var(--mono); letter-spacing: 0; text-transform: none }
+.chips { display: flex; flex-wrap: wrap; gap: 6px }
+.chip { font: 14px var(--body); border: 1px solid var(--line); background: transparent; color: var(--ink);
+  border-radius: 999px; padding: 5px 12px; cursor: pointer }
+.chip:hover { border-color: var(--mint) }
+.chip[aria-pressed="true"] { background: var(--ink); color: var(--panel); border-color: var(--ink) }
+.chip:focus-visible, input:focus-visible, button:focus-visible { outline: 2px solid var(--mint); outline-offset: 2px }
+.swatch { width: 26px; height: 26px; border-radius: 50%; border: 2px solid var(--line); cursor: pointer; padding: 0 }
+.swatch[aria-pressed="true"] { border-color: var(--ink); box-shadow: 0 0 0 2px var(--panel) inset }
+.slots { display: grid; grid-template-columns: 64px minmax(0, 1fr); gap: 8px 10px; align-items: center }
+.slots label { font-size: 13px; color: var(--sub) }
+.joints { display: grid; grid-template-columns: 92px minmax(0, 1fr) 46px; gap: 4px 10px; align-items: center; font-size: 13px }
+.joints span.v { font: 12px var(--mono); text-align: right; font-variant-numeric: tabular-nums; color: var(--sub) }
+.joints label.on { color: var(--bone); font-weight: 600 }
+input[type=range] { width: 100%; accent-color: var(--mint) }
+.row { display: flex; flex-wrap: wrap; gap: 8px; align-items: center }
+.toggle { display: inline-flex; gap: 6px; align-items: center; font-size: 13px; color: var(--sub) }
+.note { font-size: 13px; color: var(--sub); margin: 0 }
+.note code { font: 12px var(--mono); color: var(--ink) }
+.sheet { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 12px }
+.sheet figure { margin: 0; background: var(--stage); border: 1px solid var(--line); border-radius: 12px; padding: 8px }
+.sheet canvas { width: 100%; aspect-ratio: 2/3; display: block }
+.sheet figcaption { font-size: 13px; text-align: center; color: var(--sub) }
+body.shot header, body.shot .bench { display: none }
+</style>
+
+<div class="wrap">
+  <header>
+    <h1>루미 리깅 벤치</h1>
+    <p>기본은 메리야스와 빤스만 입은 상태예요. 관절 점을 끌어 포즈를 잡고, 오른쪽에서 머리·옷·장식을 바꿔 보세요. 앱과 같은 <code style="font-family:var(--mono)">rig.json</code>을 읽습니다.</p>
+  </header>
+
+  <div class="bench">
+    <div class="stage">
+      <canvas id="stage" width="800" height="1200" aria-label="캐릭터 무대. 관절을 끌어 회전"></canvas>
+      <div class="hud"><span id="hudBone">관절을 끌어 보세요</span><span id="hudInfo"></span></div>
+    </div>
+
+    <div class="panel">
+      <div class="group">
+        <h2>프리셋 <small>원화 3종 + 기본</small></h2>
+        <div class="chips" id="presets"></div>
+      </div>
+      <div class="group">
+        <h2>코디</h2>
+        <div class="slots" id="slots"></div>
+      </div>
+      <div class="group">
+        <h2>머리색</h2>
+        <div class="row" id="hairColors"></div>
+      </div>
+      <div class="group">
+        <h2>표정 · 포즈 · 동작</h2>
+        <div class="chips" id="moods"></div>
+        <div class="chips" id="poses"></div>
+        <div class="chips" id="anims"></div>
+      </div>
+      <div class="group">
+        <h2>관절 <small>도(°) · 오른쪽은 대칭 기준</small></h2>
+        <div class="row">
+          <label class="toggle"><input type="checkbox" id="showBones" checked> 뼈대 보기</label>
+          <button class="chip" id="resetPose" type="button">포즈 초기화</button>
+        </div>
+        <div class="joints" id="joints"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="group">
+    <h2>한눈에 보기 <small>기본 · 프리셋 · 포즈</small></h2>
+    <div class="sheet" id="sheet"></div>
+  </div>
+</div>
+
+<script>
+const RIG = /*RIG_JSON*/null;
+
+const BONE = Object.fromEntries(RIG.bones.map(b => [b.name, b]));
+const JOINT_LABEL = { torso: "몸통", neck: "목", head: "머리", upperArmL: "왼 어깨", forearmL: "왼 팔꿈치", handL: "왼 손목",
+  upperArmR: "오른 어깨", forearmR: "오른 팔꿈치", handR: "오른 손목", thighL: "왼 골반", shinL: "왼 무릎", footL: "왼 발목",
+  thighR: "오른 골반", shinR: "오른 무릎", footR: "오른 발목" };
+const TIP = { torso: [0, -48], neck: [0, -4], head: [0, -60], upperArmL: [0, 21], forearmL: [0, 19], handL: [0, 9],
+  upperArmR: [0, 21], forearmR: [0, 19], handR: [0, 9], thighL: [0, 26], shinL: [0, 24], footL: [0, 8],
+  thighR: [0, 26], shinR: [0, 24], footR: [0, 8] };
+const SLOT_LABEL = { hair: "헤어", top: "상의", bottom: "하의", shoes: "신발", acc: "장식", neck: "목걸이" };
+const MOODS = [["CALM", "평온"], ["TALKING", "말하기"], ["HAPPY", "기쁨"], ["LISTENING", "듣기"], ["FOCUS", "집중"]];
+const POSE_LABEL = { idle: "기본 서기", welcome: "환영", wave: "손 흔들기", cheer: "만세", point: "가리키기", think: "생각" };
+const ANIM_LABEL = { none: "정지", breathe: "숨쉬기", wave: "손 흔들기", talk: "말하기" };
+
+/* ---------- 렌더러 (앱의 LumiRig.kt 와 같은 규칙) ---------- */
+function expression(mood, t) {
+  const blink = (t % 3.6) > 3.45;
+  switch (mood) {
+    case "HAPPY": return { eyes: "closed", mouth: "open" };
+    case "TALKING": return { eyes: blink ? "closed" : "open", mouth: Math.floor(t * 6) % 2 ? "open" : "smile" };
+    case "LISTENING": return { eyes: blink ? "closed" : "open", mouth: "o" };
+    case "FOCUS": return { eyes: "open", mouth: "flat" };
+    default: return { eyes: blink ? "closed" : "open", mouth: "smile" };
+  }
+}
+function color(ref, look) {
+  if (!ref || ref[0] !== "$") return ref;
+  const k = ref.slice(1);
+  const hc = RIG.hairColors.find(h => h[0] === look.hairColor);
+  if (hc && k === "hair") return hc[2];
+  if (hc && k === "hairTip") return hc[3];
+  return RIG.palette[k] || "#FF00FF";
+}
+function visible(p, look, ex) {
+  if (p.slot && (look[p.slot] || "none") !== p.option) return false;
+  if (p.eyes && p.eyes !== ex.eyes) return false;
+  if (p.mouth && p.mouth !== ex.mouth) return false;
+  return true;
+}
+function solve(pose, anim, t) {
+  const out = {};
+  let bob = 0;
+  if (anim) for (const [k, [amp, per, ph]] of Object.entries(anim)) {
+    if (k === "_bobY") bob = amp * Math.sin((t / per + ph) * 2 * Math.PI);
+  }
+  for (const b of RIG.bones) {
+    let a = pose[b.name] ?? b.rot;
+    if (anim && anim[b.name]) { const [amp, per, ph] = anim[b.name]; a += amp * Math.sin((t / per + ph) * 2 * Math.PI); }
+    const local = b.mirror ? -a : a;
+    const parent = b.parent ? out[b.parent] : null;
+    const m = (parent ? parent.m : new DOMMatrix()).translate(b.x, b.y + (b.parent ? 0 : bob)).rotate(local);
+    out[b.name] = { m, world: (parent ? parent.world : 0) + local };
+  }
+  return out;
+}
+const pathCache = new Map();
+function p2d(d) { let p = pathCache.get(d); if (!p) { p = new Path2D(d); pathCache.set(d, p); } return p; }
+
+function draw(ctx, w, h, st, opts = {}) {
+  const t = opts.t ?? 0;
+  const anim = st.anim && st.anim !== "none" ? RIG.anims[st.anim] : null;
+  const bones = solve(st.pose, anim, t);
+  const ex = expression(st.mood, t);
+  const s = Math.min(w / RIG.canvas[0], h / RIG.canvas[1]);
+  const base = new DOMMatrix().translate((w - RIG.canvas[0] * s) / 2, (h - RIG.canvas[1] * s) / 2).scale(s);
+  ctx.setTransform(1, 0, 0, 1, 0, 0);
+  ctx.clearRect(0, 0, w, h);
+  ctx.lineJoin = "round"; ctx.lineCap = "round";
+  for (const p of RIG.parts) {
+    if (!visible(p, st.look, ex)) continue;
+    ctx.setTransform(base.multiply(bones[p.bone].m));
+    ctx.globalAlpha = p.opacity ?? 1;
+    let shape;
+    if (p.d) shape = p2d(p.d);
+    else { const [cx, cy, rx, ry] = p.ellipse; shape = new Path2D(); shape.ellipse(cx, cy, rx, ry, 0, 0, Math.PI * 2); }
+    if (p.fill) { ctx.fillStyle = color(p.fill, st.look); ctx.fill(shape); }
+    if (p.stroke) { ctx.strokeStyle = color(p.stroke, st.look); ctx.lineWidth = p.sw; ctx.stroke(shape); }
+  }
+  ctx.globalAlpha = 1;
+  if (opts.bones) drawBones(ctx, base, bones, opts.active);
+  return { base, bones };
+}
+function boneColor() { return getComputedStyle(document.documentElement).getPropertyValue("--bone").trim() || "#E0563B"; }
+function drawBones(ctx, base, bones, active) {
+  const c = boneColor();
+  ctx.setTransform(1, 0, 0, 1, 0, 0);
+  for (const name of Object.keys(TIP)) {
+    const m = base.multiply(bones[name].m);
+    const a = m.transformPoint(new DOMPoint(0, 0)), b = m.transformPoint(new DOMPoint(...TIP[name]));
+    ctx.strokeStyle = c; ctx.globalAlpha = name === active ? 1 : 0.55; ctx.lineWidth = name === active ? 5 : 3;
+    ctx.beginPath(); ctx.moveTo(a.x, a.y); ctx.lineTo(b.x, b.y); ctx.stroke();
+    ctx.fillStyle = c; ctx.beginPath(); ctx.arc(a.x, a.y, name === active ? 9 : 6, 0, Math.PI * 2); ctx.fill();
+    ctx.beginPath(); ctx.arc(b.x, b.y, 4, 0, Math.PI * 2); ctx.fill();
+  }
+  ctx.globalAlpha = 1;
+}
+
+/* ---------- 상태 ---------- */
+const presetLook = id => ({ ...RIG.presets.find(p => p.id === id).look });
+const state = { look: presetLook("base"), mood: "CALM", poseName: "welcome", pose: { ...RIG.poses.welcome }, anim: "breathe" };
+
+/* ---------- UI ---------- */
+const $ = id => document.getElementById(id);
+function chipRow(el, items, isOn, onPick) {
+  el.innerHTML = "";
+  for (const [val, label] of items) {
+    const b = document.createElement("button");
+    b.type = "button"; b.className = "chip"; b.textContent = label; b.id = el.id + "-" + val;
+    b.setAttribute("aria-pressed", isOn(val));
+    b.onclick = () => { onPick(val); renderUI(); };
+    el.appendChild(b);
+  }
+}
+function renderUI() {
+  chipRow($("presets"), RIG.presets.map(p => [p.id, p.label]),
+    id => JSON.stringify(presetLook(id)) === JSON.stringify(state.look), id => { state.look = presetLook(id); });
+  const slots = $("slots"); slots.innerHTML = "";
+  for (const [slot, opts] of Object.entries(RIG.slots)) {
+    const l = document.createElement("label"); l.textContent = SLOT_LABEL[slot] || slot; slots.appendChild(l);
+    const row = document.createElement("div"); row.className = "chips"; row.id = "slot-" + slot; slots.appendChild(row);
+    chipRow(row, opts, v => (state.look[slot] || "none") === v, v => { state.look[slot] = v; });
+  }
+  const hc = $("hairColors"); hc.innerHTML = "";
+  for (const [id, label, c1, c2] of RIG.hairColors) {
+    const b = document.createElement("button");
+    b.type = "button"; b.className = "swatch"; b.title = label; b.setAttribute("aria-label", label); b.id = "hair-" + id;
+    b.style.background = `linear-gradient(135deg, ${c1} 55%, ${c2} 55%)`;
+    b.setAttribute("aria-pressed", state.look.hairColor === id);
+    b.onclick = () => { state.look.hairColor = id; renderUI(); };
+    hc.appendChild(b);
+  }
+  chipRow($("moods"), MOODS, v => state.mood === v, v => { state.mood = v; });
+  chipRow($("poses"), Object.keys(RIG.poses).map(k => [k, POSE_LABEL[k] || k]), v => state.poseName === v,
+    v => { state.poseName = v; state.pose = { ...RIG.poses[v] }; });
+  chipRow($("anims"), [["none", ANIM_LABEL.none], ...Object.keys(RIG.anims).map(k => [k, ANIM_LABEL[k] || k])],
+    v => state.anim === v, v => { state.anim = v; });
+  renderJoints();
+}
+function renderJoints() {
+  const j = $("joints"); j.innerHTML = "";
+  for (const name of Object.keys(TIP)) {
+    const l = document.createElement("label"); l.htmlFor = "j-" + name; l.textContent = JOINT_LABEL[name];
+    if (name === activeBone) l.className = "on";
+    const r = document.createElement("input"); r.type = "range"; r.min = -180; r.max = 180; r.id = "j-" + name;
+    const v = document.createElement("span"); v.className = "v";
+    const cur = Math.round(state.pose[name] ?? BONE[name].rot);
+    r.value = cur; v.textContent = cur + "°";
+    r.oninput = () => { state.pose[name] = +r.value; state.poseName = ""; v.textContent = r.value + "°"; };
+    j.append(l, r, v);
+  }
+}
+$("resetPose").onclick = () => { state.pose = {}; state.poseName = "idle"; renderUI(); };
+
+/* ---------- 무대 + 관절 드래그 ---------- */
+const cv = $("stage"), ctx = cv.getContext("2d");
+let activeBone = null, last = null, t0 = performance.now();
+function canvasPoint(e) {
+  const r = cv.getBoundingClientRect();
+  return new DOMPoint((e.clientX - r.left) * cv.width / r.width, (e.clientY - r.top) * cv.height / r.height);
+}
+cv.addEventListener("pointerdown", e => {
+  if (!last) return;
+  const pt = canvasPoint(e);
+  let best = null, bd = 60;
+  for (const name of Object.keys(TIP)) {
+    const m = last.base.multiply(last.bones[name].m);
+    const tip = m.transformPoint(new DOMPoint(...TIP[name]));
+    const mid = m.transformPoint(new DOMPoint(TIP[name][0] * .6, TIP[name][1] * .6));
+    const d = Math.min(Math.hypot(tip.x - pt.x, tip.y - pt.y), Math.hypot(mid.x - pt.x, mid.y - pt.y));
+    if (d < bd) { bd = d; best = name; }
+  }
+  if (!best) return;
+  activeBone = best; cv.setPointerCapture(e.pointerId); cv.classList.add("drag");
+  if (state.anim !== "none") { state.anim = "none"; }
+  renderUI(); $("hudBone").textContent = JOINT_LABEL[best];
+});
+cv.addEventListener("pointermove", e => {
+  if (!activeBone || !cv.hasPointerCapture(e.pointerId)) return;
+  const b = BONE[activeBone];
+  const pt = canvasPoint(e);
+  const m = last.base.multiply(last.bones[activeBone].m);
+  const o = m.transformPoint(new DOMPoint(0, 0));
+  const parentWorld = b.parent ? last.bones[b.parent].world : 0;
+  const [tx, ty] = TIP[activeBone];
+  const want = Math.atan2(pt.y - o.y, pt.x - o.x) - Math.atan2(ty, tx);
+  let local = want * 180 / Math.PI - parentWorld;
+  local = ((local + 540) % 360) - 180;
+  const v = Math.round(b.mirror ? -local : local);
+  state.pose[activeBone] = v; state.poseName = "";
+  const r = $("j-" + activeBone); if (r) { r.value = v; r.nextSibling.textContent = v + "°"; }
+});
+const endDrag = () => { cv.classList.remove("drag"); };
+cv.addEventListener("pointerup", endDrag); cv.addEventListener("pointercancel", endDrag);
+
+const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+function frame(now) {
+  const t = reduce ? 0 : (now - t0) / 1000;
+  last = draw(ctx, cv.width, cv.height, state, { t, bones: $("showBones").checked, active: activeBone });
+  const worn = Object.entries(state.look).filter(([k, v]) => k !== "hairColor" && k !== "hair" && v !== "none").length;
+  $("hudInfo").textContent = `${RIG.bones.length} bones · 착용 ${worn}`;
+  requestAnimationFrame(frame);
+}
+
+/* ---------- 시트 ---------- */
+function sheet() {
+  const items = [
+    ["기본 · 메리야스+빤스", { look: presetLook("base"), mood: "CALM", pose: RIG.poses.idle }],
+    ["기본 · 환영", { look: presetLook("base"), mood: "HAPPY", pose: RIG.poses.welcome }],
+    ["기본 · 손 흔들기", { look: presetLook("base"), mood: "TALKING", pose: RIG.poses.wave }],
+    ["기본 · 만세", { look: presetLook("base"), mood: "HAPPY", pose: RIG.poses.cheer }],
+    ["루미 큐트", { look: presetLook("lumi_cute"), mood: "HAPPY", pose: RIG.poses.welcome }],
+    ["루온 스포티", { look: presetLook("luon_sporty"), mood: "CALM", pose: RIG.poses.welcome }],
+    ["루미 시크", { look: presetLook("lumi_chic"), mood: "CALM", pose: RIG.poses.point }],
+    ["트윈테일 · 핑크 · 티", { look: { ...presetLook("base"), hair: "twin", hairColor: "pink", top: "tee", bottom: "skirt", shoes: "sneakers", acc: "ribbon" }, mood: "LISTENING", pose: RIG.poses.think }],
+  ];
+  const el = $("sheet");
+  for (const [label, st] of items) {
+    const f = document.createElement("figure");
+    const c = document.createElement("canvas"); c.width = 400; c.height = 600;
+    const cap = document.createElement("figcaption"); cap.textContent = label;
+    f.append(c, cap); el.appendChild(f);
+    draw(c.getContext("2d"), c.width, c.height, { ...st, anim: "none" }, { t: 0.4 });
+  }
+}
+
+/* 로컬 PNG 추출용: #shot-<preset>-<pose> 이면 무대만 그린다(뼈대·UI 없음). */
+const shot = location.hash.match(/^#shot-([a-z_]+)-([a-z]+)$/);
+if (shot) {
+  document.body.className = "shot";
+  document.body.style.background = "transparent";
+  document.querySelector(".wrap").innerHTML = '<canvas id="solo" width="1024" height="1536"></canvas>';
+  draw($("solo").getContext("2d"), 1024, 1536, { look: presetLook(shot[1]), mood: "CALM", pose: RIG.poses[shot[2]] || {}, anim: "none" }, { t: 0.4 });
+} else {
+  renderUI(); sheet(); requestAnimationFrame(frame);
+}
+</script>

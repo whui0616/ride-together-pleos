@@ -1,0 +1,104 @@
+히터 좀 켜 줄래?	HEATER_ON
+히터 켜줘	HEATER_ON
+난방 좀 틀어 주세요	HEATER_ON
+히터틀어	HEATER_ON
+에어컨 켜 줘	AC_ON
+에어컨 좀	AC_ON
+에어컨 좀 틀어봐라	AC_ON
+시원한 바람 나오게 에어컨 켜 주세요	AC_ON
+에어컨만 꺼 줘	AC_OFF
+에어컨 끄자	AC_OFF
+에어컨 좀 꺼 줄래요?	AC_OFF
+히터 꺼	CLIMATE_OFF
+냉난방 다 꺼 줘	CLIMATE_OFF
+공조 전부 꺼주세요	CLIMATE_OFF
+히터 좀 끄자	CLIMATE_OFF
+좀 따뜻하게 해 줘	WARMER
+온도 좀 올려줘	WARMER
+온도 이도 올려 줘	WARMER=2
+히터 세게 틀어 줘	WARMER~FULL
+조금만 따뜻하게 해 줄래?	WARMER~LITTLE
+좀 시원하게 해 주세요	COOLER
+온도 내려	COOLER
+온도 삼 도 내려 줘	COOLER=3
+에어컨 세게 해 줘	COOLER~FULL
+살짝만 시원하게 해줘	COOLER~LITTLE
+온도 24도로 맞춰 줘	SET_TEMPERATURE=24
+이십이 도로 해 줘	SET_TEMPERATURE=22
+스물여섯 도로 설정해 주세요	SET_TEMPERATURE=26
+온도 이십일도로 맞춰줘	SET_TEMPERATURE=21
+바람 세게 해 줘	FAN_UP
+팬 좀 올려 줄래?	FAN_UP
+바람 약하게 해 줘	FAN_DOWN
+에어컨 약하게 해 주세요	FAN_DOWN
+히터 약하게	FAN_DOWN
+앞유리 김 서림 제거해 줘	DEFROST_ON
+성에 제거 켜 줘	DEFROST_ON
+앞유리 성에 좀 없애 줄래?	DEFROST_ON
+성에제거 꺼 줘	DEFROST_OFF
+김서림 제거 이제 그만	DEFROST_OFF
+외기로 돌려 줘	FRESH_AIR
+환기 좀 시켜 줘	FRESH_AIR
+내기 순환으로 바꿔 줘	RECIRCULATE
+내기순환 해줘	RECIRCULATE
+운전석 열선 켜 줘	SEAT_HEAT_ON@DRIVER
+조수석 시트 열선 좀 켜 줄래?	SEAT_HEAT_ON@PASSENGER
+뒷좌석 열선 꺼 줘	SEAT_HEAT_OFF@REAR
+시트 열선 꺼줘	SEAT_HEAT_OFF
+내 자리 통풍 시트 켜 줘	SEAT_VENT_ON@DRIVER
+옆자리 통풍시트 꺼 주세요	SEAT_VENT_OFF@PASSENGER
+핸들 열선 켜 줘	WHEEL_HEAT_ON
+핸들 열선 좀 꺼 줄래?	WHEEL_HEAT_OFF
+운전석 창문 내려 줘	WINDOW_OPEN@DRIVER
+조수석 창문 살짝 열어 줘	WINDOW_OPEN@PASSENGER~LITTLE
+뒷좌석 창문 올려 줘	WINDOW_CLOSE@REAR
+창문 전부 내려 주세요	WINDOW_OPEN@ALL
+창문 다 닫아 줘	WINDOW_CLOSE@ALL
+창문 끝까지 내려 줘	WINDOW_OPEN~FULL
+썬루프 열어 줘	SUNROOF_OPEN
+선루프 좀 닫아 줄래?	SUNROOF_CLOSE
+실내등 켜 줘	CABIN_LIGHT_ON
+실내등 좀 꺼 주세요	CABIN_LIGHT_OFF
+문 잠가 줘	DOOR_LOCK
+도어락 잠궈줘	DOOR_LOCK
+히터 켜 주이소	HEATER_ON
+추워	WARMER?
+너무 춥다	WARMER?
+덥네	COOLER?
+아 더워 죽겠네	COOLER?
+히터가 너무 뜨거워	COOLER?
+앞유리에 김 서렸네	DEFROST_ON?
+앞이 뿌옇다	DEFROST_ON?
+바람이 너무 세	FAN_DOWN?
+엉덩이가 차갑네	SEAT_HEAT_ON?
+핸들이 너무 차가워	WHEEL_HEAT_ON?
+히터	HEATER_ON?
+에어컨	AC_ON?
+문 열어 줘	REFUSED
+트렁크 열어 줘	REFUSED
+시동 꺼 줘	REFUSED
+와이퍼 켜 줘	REFUSED
+전조등 켜 줄래?	REFUSED
+비상등 좀 켜 주세요	REFUSED
+기어 중립으로 놔 줘	REFUSED
+사이드미러 접어 줘	REFUSED
+에어컨 켜져 있어?	NONE
+히터 켜지 마	NONE
+오늘 날씨 진짜 춥더라	NONE
+배고프다 뭐 먹을까	NONE
+집까지 얼마나 걸려?	NONE
+엄마한테 전화해 줘	NONE
+내비 켜 줘	NONE
+히터 고장 난 거 아니야?	NONE
+에어컨 필터는 언제 갈아야 돼?	NONE
+어제 에어컨 때문에 감기 걸렸어	NONE
+창문 안 열어도 돼	NONE
+노래 좀 틀어 줘	NONE
+문자 보내 줘 곧 도착한다고	NONE
+오늘 비 온대?	NONE
+열선 시트 있는 차가 좋더라	NONE
+지금 몇 도야?	NONE
+실내등은 왜 안 꺼지지	NONE
+요즘 기름값 너무 비싸다	NONE
+에어컨 틀지 말아 줘	NONE
+썬루프 있는 차 사고 싶다	NONE

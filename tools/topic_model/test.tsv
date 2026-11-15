@@ -1,0 +1,144 @@
+food	꼬르륵 소리가 나
+food	배꼽시계가 울린다
+food	뭐 좀 씹고 싶은데
+food	아까부터 계속 김밥 생각나
+food	샌드위치 같은 거 사 먹을 데 없나
+food	목이 칼칼해서 시원한 음료 마시고 싶어
+food	속이 쓰려 아무것도 못 먹었어
+food	오늘 한 끼도 못 챙겼어
+food	삼겹살 굽고 싶다
+food	따뜻한 국물이 당겨
+food	카페 들렀다 가자
+food	디저트 생각나네
+food	초콜릿 하나만 있으면 좋겠다
+food	배가 등에 붙겠어
+food	점심시간 지났는데
+food	아이스크림 땡긴다
+rest	눈꺼풀이 천근만근이야
+rest	잠깐만 눈 좀 감고 싶다
+rest	어젯밤에 거의 못 잤거든
+rest	허리가 끊어질 것 같아
+rest	엉덩이가 배겨
+rest	아까 꾸벅꾸벅 졸았어
+rest	기운이 하나도 없네
+rest	몸이 천근만근이야
+rest	쉬엄쉬엄 가고 싶다
+rest	급해 볼일 좀 봐야 할 것 같아
+rest	자꾸 멍때리게 돼
+rest	녹초가 됐어
+rest	목이 뻐근하네
+rest	잠깐 멈춰서 숨 좀 돌리자
+rest	세 시간 넘게 달렸네
+rest	눈앞이 가물가물해
+route	얼마나 더 달려야 해
+route	목적지 아직이야?
+route	이대로 가면 몇 시쯤이야
+route	약속 시간 맞출 수 있을까
+route	여기 어디야
+route	다 와 가?
+route	남은 시간 좀 알려 줘
+route	차 막혀서 늦을 것 같은데
+route	빠른 길로 바꿔 줘
+route	다음 갈림길에서 어느 쪽이야
+route	톨게이트 언제 나와
+route	지금 제대로 가고 있는 거 맞지
+route	한 시간 안에 갈 수 있어?
+route	집까지 멀었어?
+route	이 속도면 언제쯤 가
+route	돌아가는 길 아니야?
+message	와이프한테 금방 간다고 좀 해 줘
+message	방금 띵동 한 거 누구야
+message	엄마가 뭐라고 보냈어
+message	팀 단체방 확인해 줘
+message	친구한테 길 막힌다고 전해
+message	방금 온 거 읽어 줄 수 있어?
+message	누가 나 찾았어?
+message	회신 좀 해 줘야 하는데
+message	동료한테 자료 보냈다고 알려 줘
+message	부재중 전화 있어?
+message	남자친구한테 보고 싶다고 보내 줘
+message	알림 뭐 왔어
+message	사장님한테 내일 뵙자고 전해 줘
+message	언니한테 도착 시간 공유해 줘
+message	그 사람한테 이따 다시 연락한다고 해
+message	방금 온 내용 들려줘
+bored	따분해 죽겠다
+bored	뭔가 재미난 거 해 봐
+bored	수다 좀 떨어 줄래
+bored	너무 조용하다 말 좀 해
+bored	웃긴 얘기 아는 거 있어?
+bored	삼행시 해 볼래
+bored	스무고개 하자
+bored	나 지루해서 미치겠어
+bored	시간 때울 거 없나
+bored	아무 주제나 골라서 말해 봐
+bored	재미있는 상식 하나 알려 줘
+bored	놀아 줘 심심하단 말이야
+bored	랩 한 번 해 봐
+bored	나랑 게임 하나 하자
+bored	이 길은 볼 게 하나도 없네
+bored	말 상대 좀 해 줄래
+control	안이 너무 덥다 좀 시원하게
+control	유리창에 김 서렸어
+control	바깥 공기 좀 들어오게 해 줘
+control	발 쪽이 너무 차가워
+control	엉따 켜 줘
+control	문 좀 잠가 줄래
+control	뒷문 열어 줘
+control	에어컨 바람 좀 줄여
+control	실내 온도 22도로 맞춰 줘
+control	전조등 켜
+control	비 오니까 와이퍼 좀 돌려 줘
+control	햇빛 가리개 닫아
+control	좌석 통풍 켜 줘
+control	차 안이 답답해 환기 좀
+control	트렁크 좀 닫아 줄래
+control	사이드미러 펴 줘
+mood	오늘 진짜 되는 일이 하나도 없다
+mood	상사한테 한소리 들었어
+mood	마음이 너무 허전해
+mood	괜히 눈물이 나
+mood	요즘 사는 게 재미없어
+mood	나 실연당했어
+mood	열받아 죽겠네
+mood	불안해서 잠이 안 와
+mood	면접 떨어졌어
+mood	다 내 잘못 같아
+mood	기운 내고 싶어
+mood	마음이 싱숭생숭해
+mood	아무도 날 이해 못 해
+mood	멘붕이야
+mood	울고 싶다
+mood	인생이 왜 이렇게 꼬이지
+greeting	오늘도 고생했어
+greeting	너 덕분이야
+greeting	하이 반가워
+greeting	너 정말 착하다
+greeting	오 센스 있네
+greeting	좋은 저녁이야
+greeting	나 왔어
+greeting	너 최고다
+greeting	기분 좋게 해 줘서 땡큐
+greeting	잘 있었어?
+greeting	너 목소리 예쁘다
+greeting	오늘도 함께 해 줘서 든든해
+greeting	나 너 좋아
+greeting	굿나잇
+greeting	다음에 또 같이 가자
+greeting	역시 믿을 건 너뿐이야
+other	내일 날씨 맑대
+other	어제 야구 봤어?
+other	저 산 이름이 뭘까
+other	요즘 물가가 너무 올랐어
+other	너 취미가 뭐야
+other	다음 달에 이사 가
+other	휴대폰 배터리가 오래 못 가
+other	조카가 이번에 대학 들어갔대
+other	올해 벌써 반이 지났네
+other	저기 공사 중이네
+other	고양이랑 강아지 중에 뭐가 좋아
+other	저 간판 글씨 웃기다
+other	오늘 몇 월 며칠이지
+other	월급날 언제였더라
+other	드라마 다음 화 언제 나와
+other	지난번에 산 신발 괜찮더라

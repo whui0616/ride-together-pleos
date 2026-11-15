@@ -1,0 +1,283 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background"
+    android:orientation="horizontal">
+
+    <FrameLayout
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1">
+
+        <LinearLayout
+            android:id="@+id/drivingView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:padding="40dp">
+
+            <ai.nunchi.mate.ui.CompanionView
+                android:id="@+id/drivingCompanion"
+                android:layout_width="480dp"
+                android:layout_height="560dp" />
+
+            <TextView
+                android:id="@+id/line"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:ellipsize="end"
+                android:gravity="center"
+                android:lineSpacingExtra="4dp"
+                android:maxLines="2"
+                android:textColor="@color/ink"
+                android:textSize="40sp" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/zoneChip"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingHorizontal="16dp"
+                    android:paddingVertical="8dp"
+                    android:textColor="#FFFFFF"
+                    android:textSize="26sp" />
+
+                <TextView
+                    android:id="@+id/pendingChip"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:paddingHorizontal="16dp"
+                    android:paddingVertical="8dp"
+                    android:textColor="@color/ink"
+                    android:textSize="26sp" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <FrameLayout
+            android:id="@+id/parkedView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="gone">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:clipChildren="false"
+                android:orientation="vertical">
+
+                <ai.nunchi.mate.ui.CompanionView
+                    android:id="@+id/parkedCompanion"
+                    android:layout_width="760dp"
+                    android:layout_height="790dp" />
+
+                <TextView
+                    android:id="@+id/parkedName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:textColor="@color/ink"
+                    android:textSize="40sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/parkedGreeting"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="0dp"
+                    android:textColor="@color/ink_sub"
+                    android:textSize="28sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/menuLeft"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="top|start"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginTop="110dp"
+                android:orientation="vertical" />
+
+            <LinearLayout
+                android:id="@+id/menuRight"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="top|end"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginTop="110dp"
+                android:orientation="vertical" />
+
+            <FrameLayout
+                android:id="@+id/menuOverlay"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:visibility="gone">
+
+                <View
+                    android:id="@+id/overlayScrim"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="#66000000" />
+
+                <LinearLayout
+                    android:id="@+id/overlayCard"
+                    android:layout_width="900dp"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:layout_margin="36dp"
+                    android:background="@drawable/bg_card"
+                    android:orientation="vertical"
+                    android:padding="24dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/overlayTitle"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:textColor="@color/ink"
+                            android:textSize="36sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/overlayClose"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:padding="8dp"
+                            android:text="✕"
+                            android:textColor="@color/ink_sub"
+                            android:textSize="36sp" />
+                    </LinearLayout>
+
+                    <ScrollView
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_marginTop="12dp"
+                        android:layout_weight="1"
+                        android:scrollbars="none">
+
+                        <LinearLayout
+                            android:id="@+id/overlayBody"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical" />
+                    </ScrollView>
+                </LinearLayout>
+            </FrameLayout>
+
+            <FrameLayout
+                android:id="@+id/tutorialOverlay"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:clickable="true"
+                android:visibility="gone">
+
+                <LinearLayout
+                    android:layout_width="520dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom|center_horizontal"
+                    android:layout_marginBottom="28dp"
+                    android:background="@drawable/bg_card"
+                    android:elevation="8dp"
+                    android:orientation="vertical"
+                    android:padding="24dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/tutorialTitle"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:textColor="@color/ink"
+                            android:textSize="26sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/tutorialProgress"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/ink_sub"
+                            android:textSize="18sp" />
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/tutorialBody"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:lineSpacingExtra="4dp"
+                        android:textColor="@color/ink"
+                        android:textSize="19sp" />
+
+                    <TextView
+                        android:id="@+id/tutorialNext"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:background="@drawable/bg_button"
+                        android:gravity="center"
+                        android:paddingVertical="14dp"
+                        android:text="다음"
+                        android:textColor="#FFFFFF"
+                        android:textSize="26sp" />
+                </LinearLayout>
+            </FrameLayout>
+        </FrameLayout>
+
+        <TextView
+            android:id="@+id/togglePanel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|end"
+            android:layout_marginEnd="12dp"
+            android:layout_marginBottom="120dp"
+            android:background="@drawable/bg_card"
+            android:paddingHorizontal="14dp"
+            android:paddingVertical="8dp"
+            android:text="데모 패널 ▸"
+            android:textColor="@color/ink_sub"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/alwaysListen"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="top|start"
+            android:layout_margin="12dp"
+            android:paddingHorizontal="20dp"
+            android:paddingVertical="12dp"
+            android:textSize="20sp" />
+    </FrameLayout>
+
+    <ScrollView
+        android:id="@+id/panelScroll"
+        android:layout_width="520dp"
+        android:layout_height="match_parent"
+        android:background="@color/panel">
+
+        <LinearLayout
+            android:id="@+id/panel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp" />
+    </ScrollView>
+</LinearLayout>

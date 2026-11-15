@@ -1,0 +1,220 @@
+히터 좀 켜줘	HEATER_ON
+난방 틀어줄래	HEATER_ON
+어 히터 켜봐	HEATER_ON
+히터켜줘요	HEATER_ON
+아 그리고 난방 좀 켜 주세요	HEATER_ON
+히터 틀자	HEATER_ON
+에어컨 켜 줘	AC_ON
+에어컨틀어줘	AC_ON
+음 에어컨 좀 켜봐	AC_ON
+에어컨 켜줄래	AC_ON
+에어콘 틀어 주세요	AC_ON
+에어컨 가동해 줘	AC_ON
+에어컨 꺼 줘	AC_OFF
+에어컨만 끄자	AC_OFF
+에어컨 좀 꺼줄래	AC_OFF
+에어컨 끄세요	AC_OFF
+히터 꺼줘	CLIMATE_OFF
+난방 끄자	CLIMATE_OFF
+공조 다 꺼 줘	CLIMATE_OFF
+냉난방 꺼줄래	CLIMATE_OFF
+히터 좀 끄세요	CLIMATE_OFF
+좀 더 따뜻하게 해 줘	WARMER
+온도 올려줘	WARMER
+온도 2도 올려	WARMER=2
+따뜻하게 해줘	WARMER
+온도 좀 올려봐	WARMER
+온도 삼도 올려줘	WARMER=3
+따뜻하게 조금만 해줘	WARMER~LITTLE
+좀 더 시원하게 해줘	COOLER
+온도 내려줘	COOLER
+온도 1도 낮춰	COOLER=1
+시원하게 살짝 해 줘	COOLER~LITTLE
+온도 좀 내려봐	COOLER
+온도 두 도 내려줘	COOLER=2
+온도 22도로 맞춰줘	SET_TEMPERATURE=22
+이십삼 도로 해 줘	SET_TEMPERATURE=23
+스물네 도로 설정해줘	SET_TEMPERATURE=24
+온도를 21도로 해줄래	SET_TEMPERATURE=21
+온도 이십육 도로 맞추자	SET_TEMPERATURE=26
+18도로 맞춰줘	SET_TEMPERATURE=18
+스물두 도 해줘	SET_TEMPERATURE=22
+바람 세게 해줘	FAN_UP
+풍량 올려줘	FAN_UP
+바람 좀 더 세게	FAN_UP
+바람 세기 높여 줘	FAN_UP
+바람 최대로 세게 해줘	FAN_UP~FULL
+바람 약하게 해줘	FAN_DOWN
+풍량 줄여줘	FAN_DOWN
+바람 좀 약하게 해 줘요	FAN_DOWN
+바람 세기 낮춰	FAN_DOWN
+바람 조금만 줄여	FAN_DOWN~LITTLE
+앞유리 성에 제거해줘	DEFROST_ON
+김서림 없애줘	DEFROST_ON
+앞유리 김 좀 없애 줘	DEFROST_ON
+디프로스트 켜줘	DEFROST_ON
+앞유리 김서림 제거 꺼줘	DEFROST_OFF
+디프로스트 꺼 줘	DEFROST_OFF
+성에 제거 그만해	DEFROST_OFF
+외기 모드로 바꿔줘	FRESH_AIR
+바깥 공기 들어오게 해줘	FRESH_AIR
+내기순환으로 해줘	RECIRCULATE
+내기 순환 켜줘	RECIRCULATE
+실내 공기 순환 모드로 해 줘	RECIRCULATE
+시트 열선 켜줘	SEAT_HEAT_ON
+조수석 열선 켜 줘	SEAT_HEAT_ON@PASSENGER
+뒷자리 시트 열선 틀어줘	SEAT_HEAT_ON@REAR
+열선 시트 켜 줘	SEAT_HEAT_ON
+시트 열선 꺼줘	SEAT_HEAT_OFF
+조수석 열선 꺼 주세요	SEAT_HEAT_OFF@PASSENGER
+뒷자리 열선 끄자	SEAT_HEAT_OFF@REAR
+시트 통풍 켜줘	SEAT_VENT_ON
+조수석 통풍 틀어줘	SEAT_VENT_ON@PASSENGER
+시트 통풍 꺼줘	SEAT_VENT_OFF
+뒷자리 통풍 끄자	SEAT_VENT_OFF@REAR
+핸들 열선 켜줘	WHEEL_HEAT_ON
+핸들 열선 틀어봐	WHEEL_HEAT_ON
+핸들 열선 꺼줘	WHEEL_HEAT_OFF
+핸들 열선 끄자	WHEEL_HEAT_OFF
+창문 열어줘	WINDOW_OPEN
+조수석 창문 열어줘	WINDOW_OPEN@PASSENGER
+뒷자리 창문 조금만 열어	WINDOW_OPEN@REAR~LITTLE
+창문 전부 열어줘	WINDOW_OPEN@ALL
+내 쪽 창문 끝까지 내려줘	WINDOW_OPEN@DRIVER~FULL
+창문 살짝 열어줘	WINDOW_OPEN~LITTLE
+창문 닫아줘	WINDOW_CLOSE
+조수석 창문 닫아줘	WINDOW_CLOSE@PASSENGER
+창문 다 올려줘	WINDOW_CLOSE@ALL
+뒷창문 닫아	WINDOW_CLOSE@REAR
+창문 완전히 닫아줘	WINDOW_CLOSE~FULL
+선루프 열어줘	SUNROOF_OPEN
+썬루프 조금만 열어	SUNROOF_OPEN~LITTLE
+선루프 끝까지 열어줘	SUNROOF_OPEN~FULL
+선루프 닫아줘	SUNROOF_CLOSE
+썬루프 닫아줄래	SUNROOF_CLOSE
+실내등 켜줘	CABIN_LIGHT_ON
+실내등 좀 켜봐	CABIN_LIGHT_ON
+실내등 꺼줘	CABIN_LIGHT_OFF
+실내등 끄자	CABIN_LIGHT_OFF
+문 잠가줘	DOOR_LOCK
+도어락 잠가 줘	DOOR_LOCK
+문 좀 잠궈줘	DOOR_LOCK
+추워	WARMER?
+아 추워 죽겠다	WARMER?
+으 춥다	WARMER?
+좀 쌀쌀한데	WARMER?
+발이 시려	WARMER?
+으슬으슬하다	WARMER?
+덥다	COOLER?
+아 더워	COOLER?
+너무 덥네	COOLER?
+후끈하네	COOLER?
+쪄 죽겠다	COOLER?
+땀나네	COOLER?
+앞이 뿌옇게 안 보여	DEFROST_ON?
+유리에 김 꼈어	DEFROST_ON?
+앞유리가 뿌옇네	DEFROST_ON?
+앞 유리가 안 보여	DEFROST_ON?
+손 시려	WHEEL_HEAT_ON?
+핸들이 차가워	WHEEL_HEAT_ON?
+엉덩이가 차갑네	SEAT_HEAT_ON?
+바람이 너무 세	FAN_DOWN?
+바람 너무 쎄다	FAN_DOWN?
+바람이 너무 약해	FAN_UP?
+차 안 공기가 탁해	FRESH_AIR?
+밖에서 매연 냄새 나	RECIRCULATE?
+터널이라 냄새나	RECIRCULATE?
+실내가 너무 어두워	CABIN_LIGHT_ON?
+트렁크 열어줘	REFUSED
+트렁크 좀 열어봐	REFUSED
+후드 열어줘	REFUSED
+보닛 열어 줘	REFUSED
+시동 꺼줘	REFUSED
+시동 좀 꺼봐	REFUSED
+시동 걸어줘	REFUSED
+시동 켜 줘	REFUSED
+주차 브레이크 걸어줘	REFUSED
+사이드 브레이크 풀어줘	REFUSED
+기어 P로 바꿔줘	REFUSED
+기어 D로 넣어줘	REFUSED
+후진 기어 넣어	REFUSED
+문 열어줘	REFUSED
+운전석 문 열어줘	REFUSED
+문 열어 주세요	REFUSED
+사이드미러 접어줘	REFUSED
+사이드미러 펴줘	REFUSED
+브레이크 밟아줘	REFUSED
+연료 주입구 열어줘	REFUSED
+에어컨 안 켜도 돼	NONE
+히터 끄지 마	NONE
+창문 열지 마	NONE
+에어컨 켜지 말아줘	NONE
+어제 엄청 추웠어	NONE
+밖에 덥더라	NONE
+오늘 날씨 진짜 덥대	NONE
+히터가 왜 안 나오지	NONE
+에어컨 필터 언제 갈아	NONE
+에어컨에서 이상한 소리 나	NONE
+엄마한테 창문 닫았다고 보내 줘	NONE
+친구한테 에어컨 켰다고 문자해 줘	NONE
+이 차 선루프 예쁘다	NONE
+선루프 있는 차가 좋더라	NONE
+열선 시트 있는 차 사고 싶어	NONE
+히터 틀면 연비 떨어져	NONE
+에어컨 켜면 연비 많이 나빠져	NONE
+창문 열면 벌금이야	NONE
+어제 창문 열고 달렸더니 시원하더라	NONE
+겨울엔 핸들 열선이 최고지	NONE
+실내등 고장 난 것 같아	NONE
+문 잠겼는지 어떻게 확인해	NONE
+내기순환이 뭐야	NONE
+에어컨 바람 냄새나는 이유가 뭘까	NONE
+예전 차는 에어컨이 없었어	NONE
+선루프 열면 시끄럽지	NONE
+오늘 히터 틀었더니 졸리더라	NONE
+노래 틀어줘	NONE
+다음 곡으로 넘겨줘	NONE
+볼륨 올려줘	NONE
+집에 가는 길 안내해줘	NONE
+배고프다 뭐 먹을까	NONE
+오늘 기분 좋다	NONE
+너 이름이 뭐야	NONE
+지금 몇 시야	NONE
+라디오 켜줘	NONE
+창문 닦는 거 깜빡했네	NONE
+김 서림은 왜 생기는 거야	NONE
+디프로스트가 무슨 뜻이야	NONE
+히터 안 틀어도 안 추워	NONE
+아들한테 창문 닫으라고 전해줘	NONE
+아빠한테 선루프 열었냐고 물어봐 줘	NONE
+아까 문 잠그는 거 깜빡했어	NONE
+핸들 열선 고장난 거 같아	NONE
+통풍 시트는 비싸더라	NONE
+에어컨 괜찮아 안 켜도 돼	NONE
+도어락 비밀번호 바꿨어	NONE
+실내등 색깔이 예쁘네	NONE
+어 열선 시트 좀 꺼봐	SEAT_HEAT_OFF
+통풍시트 꺼주라	SEAT_VENT_OFF
+운전석 통풍 켜줘	SEAT_VENT_ON@DRIVER
+조수석 시트 열선 켜줄래	SEAT_HEAT_ON@PASSENGER
+앞유리 성에 제거 좀 꺼 줘요	DEFROST_OFF
+유리 김 서린 거 빨리 없애줘	DEFROST_ON
+실내등 좀 꺼주세요	CABIN_LIGHT_OFF
+문 잠그자	DOOR_LOCK
+히터 최대로 올려줘	WARMER~FULL
+에어컨 최대한 시원하게 해줘	COOLER~FULL
+온도 26도로 해줘	SET_TEMPERATURE=26
+뒷자리 창문 닫아줘	WINDOW_CLOSE@REAR
+창문 전부 닫아줄래	WINDOW_CLOSE@ALL
+선루프 좀 닫아줘요	SUNROOF_CLOSE
+바람 아주 약하게	FAN_DOWN~LITTLE
+에어컨 틀자	AC_ON
+공조 꺼줘	CLIMATE_OFF
+조수석 창문 살짝 열어봐	WINDOW_OPEN@PASSENGER~LITTLE
+외기로 돌려줘	FRESH_AIR
+내기로 바꿔줘	RECIRCULATE
+어우 손이 꽁꽁 얼었네	WHEEL_HEAT_ON?
+앞이 하나도 안 보여 김 때문에	DEFROST_ON?
+엔진 시동 좀 꺼줄래	REFUSED
+나 좀 졸려	NONE
+선루프 청소 어떻게 해	NONE

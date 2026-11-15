@@ -1,0 +1,704 @@
+[
+  {
+    "gender": "f",
+    "outfit": 23,
+    "skin": 0,
+    "size": [
+      400,
+      600
+    ],
+    "skinPixels": 2932,
+    "binaryAlpha": true,
+    "garmentInvariant": true,
+    "neckOverlap": true
+  },
+  {
+    "gender": "f",
+    "outfit": 23,
+    "skin": 1,
+    "size": [
+      400,
+      600
+    ],
+    "skinPixels": 2932,
+    "binaryAlpha": true,
+    "garmentInvariant": true,
+    "neckOverlap": true
+  },
+  {
+    "gender": "f",
+    "outfit": 23,
+    "skin": 2,
+    "size": [
+      400,
+      600
+    ],
+    "skinPixels": 2932,
+    "binaryAlpha": true,
+    "garmentInvariant": true,
+    "neckOverlap": true
+  },
+  {
+    "gender": "f",
+    "outfit": 23,
+    "skin": 3,
+    "size": [
+      400,
+      600
+    ],
+    "skinPixels": 2932,
+    "binaryAlpha": true,
+    "garmentInvariant": true,
+    "neckOverlap": true
+  },
+  {
+    "gender": "f",
+    "outfit": 23,
+    "skin": 4,
+    "size": [
+      400,
+      600
+    ],
+    "skinPixels": 2932,
+    "binaryAlpha": true,
+    "garmentInvariant": true,
+    "neckOverlap": true
+  },
+  {
+    "gender": "f",
+    "outfit": 23,
+    "skin": 5,
+    "size": [
+      400,
+      600
+    ],
+    "skinPixels": 2932,
+    "binaryAlpha": true,
+    "garmentInvariant": true,
+    "neckOverlap": true
+  },
+  {
+    "gender": "f",
+    "outfit": 23,
+    "skin": 6,
+    "size": [
+      400,
+      600
+    ],
+    "skinPixels": 2932,
+    "binaryAlpha": true,
+    "garmentInvariant": true,
+    "neckOverlap": true
+  },
+  {
+    "gender": "f",
+    "outfit": 23,
+    "skin": 7,
+    "size": [
+      400,
+      600
+    ],
+    "skinPixels": 2932,
+    "binaryAlpha": true,
+    "garmentInvariant": true,
+    "neckOverlap": true
+  },
+  {
+    "gender": "f",
+    "outfit": 23,
+    "skin": 8,
+    "size": [
+      400,
+      600
+    ],
+    "skinPixels": 2932,
+    "binaryAlpha": true,
+    "garmentInvariant": true,
+    "neckOverlap": true
+  },
+  {
+    "gender": "f",
+    "outfit": 24,
+    "skin": 0,
+    "size": [
+      400,
+      600
+    ],
+    "skinPixels": 2848,
+    "binaryAlpha": true,
+    "garmentInvariant": true,
+    "neckOverlap": true
+  },
+  {
+    "gender": "f",
+    "outfit": 24,
+    "skin": 1,
+    "size": [
+      400,
+      600
+    ],
+    "skinPixels": 2848,
+    "binaryAlpha": true,
+    "garmentInvariant": true,
+    "neckOverlap": true
+  },
+  {
+    "gender": "f",
+    "outfit": 24,
+    "skin": 2,
+    "size": [
+      400,
+      600
+    ],
+    "skinPixels": 2848,
+    "binaryAlpha": true,
+    "garmentInvariant": true,
+    "neckOverlap": true
+  },
+  {
+    "gender": "f",
+    "outfit": 24,
+    "skin": 3,
+    "size": [
+      400,
+      600
+    ],
+    "skinPixels": 2848,
+    "binaryAlpha": true,
+    "garmentInvariant": true,
+    "neckOverlap": true
+  },
+  {
+    "gender": "f",
+    "outfit": 24,
+    "skin": 4,
+    "size": [
+      400,
+      600
+    ],
+    "skinPixels": 2848,
+    "binaryAlpha": true,
+    "garmentInvariant": true,
+    "neckOverlap": true
+  },
+  {
+    "gender": "f",
+    "outfit": 24,
+    "skin": 5,
+    "size": [
+      400,
+      600
+    ],
+    "skinPixels": 2848,
+    "binaryAlpha": true,
+    "garmentInvariant": true,
+    "neckOverlap": true
+  },
+  {
+    "gender": "f",
+    "outfit": 24,
+    "skin": 6,
+    "size": [
+      400,
+      600
+    ],
+    "skinPixels": 2848,
+    "binaryAlpha": true,
+    "garmentInvariant": true,
+    "neckOverlap": true
+  },
+  {
+    "gender": "f",
+    "outfit": 24,
+    "skin": 7,
+    "size": [
+      400,
+      600
+    ],
+    "skinPixels": 2848,
+    "binaryAlpha": true,
+    "garmentInvariant": true,
+    "neckOverlap": true
+  },
+  {
+    "gender": "f",
+    "outfit": 24,
+    "skin": 8,
+    "size": [
+      400,
+      600
+    ],
+    "skinPixels": 2848,
+    "binaryAlpha": true,
+    "garmentInvariant": true,
+    "neckOverlap": true
+  },
+  {
+    "gender": "f",
+    "outfit": 25,
+    "skin": 0,
+    "size": [
+      400,
+      600
+    ],
+    "skinPixels": 2942,
+    "binaryAlpha": true,
+    "garmentInvariant": true,
+    "neckOverlap": true
+  },
+  {
+    "gender": "f",
+    "outfit": 25,
+    "skin": 1,
+    "size": [
+      400,
+      600
+    ],
+    "skinPixels": 2942,
+    "binaryAlpha": true,
+    "garmentInvariant": true,
+    "neckOverlap": true
+  },
+  {
+    "gender": "f",
+    "outfit": 25,
+    "skin": 2,
+    "size": [
+      400,
+      600
+    ],
+    "skinPixels": 2942,
+    "binaryAlpha": true,
+    "garmentInvariant": true,
+    "neckOverlap": true
+  },
+  {
+    "gender": "f",
+    "outfit": 25,
+    "skin": 3,
+    "size": [
+      400,
+      600
+    ],
+    "skinPixels": 2942,
+    "binaryAlpha": true,
+    "garmentInvariant": true,
+    "neckOverlap": true
+  },
+  {
+    "gender": "f",
+    "outfit": 25,
+    "skin": 4,
+    "size": [
+      400,
+      600
+    ],
+    "skinPixels": 2942,
+    "binaryAlpha": true,
+    "garmentInvariant": true,
+    "neckOverlap": true
+  },
+  {
+    "gender": "f",
+    "outfit": 25,
+    "skin": 5,
+    "size": [
+      400,
+      600
+    ],
+    "skinPixels": 2942,
+    "binaryAlpha": true,
+    "garmentInvariant": true,
+    "neckOverlap": true
+  },
+  {
+    "gender": "f",
+    "outfit": 25,
+    "skin": 6,
+    "size": [
+      400,
+      600
+    ],
+    "skinPixels": 2942,
+    "binaryAlpha": true,
+    "garmentInvariant": true,
+    "neckOverlap": true
+  },
+  {
+    "gender": "f",
+    "outfit": 25,
+    "skin": 7,
+    "size": [
+      400,
+      600
+    ],
+    "skinPixels": 2942,
+    "binaryAlpha": true,
+    "garmentInvariant": true,
+    "neckOverlap": true
+  },
+  {
+    "gender": "f",
+    "outfit": 25,
+    "skin": 8,
+    "size": [
+      400,
+      600
+    ],
+    "skinPixels": 2942,
+    "binaryAlpha": true,
+    "garmentInvariant": true,
+    "neckOverlap": true
+  },
+  {
+    "gender": "m",
+    "outfit": 23,
+    "skin": 0,
+    "size": [
+      400,
+      600
+    ],
+    "skinPixels": 2909,
+    "binaryAlpha": true,
+    "garmentInvariant": true,
+    "neckOverlap": true
+  },
+  {
+    "gender": "m",
+    "outfit": 23,
+    "skin": 1,
+    "size": [
+      400,
+      600
+    ],
+    "skinPixels": 2909,
+    "binaryAlpha": true,
+    "garmentInvariant": true,
+    "neckOverlap": true
+  },
+  {
+    "gender": "m",
+    "outfit": 23,
+    "skin": 2,
+    "size": [
+      400,
+      600
+    ],
+    "skinPixels": 2909,
+    "binaryAlpha": true,
+    "garmentInvariant": true,
+    "neckOverlap": true
+  },
+  {
+    "gender": "m",
+    "outfit": 23,
+    "skin": 3,
+    "size": [
+      400,
+      600
+    ],
+    "skinPixels": 2909,
+    "binaryAlpha": true,
+    "garmentInvariant": true,
+    "neckOverlap": true
+  },
+  {
+    "gender": "m",
+    "outfit": 23,
+    "skin": 4,
+    "size": [
+      400,
+      600
+    ],
+    "skinPixels": 2909,
+    "binaryAlpha": true,
+    "garmentInvariant": true,
+    "neckOverlap": true
+  },
+  {
+    "gender": "m",
+    "outfit": 23,
+    "skin": 5,
+    "size": [
+      400,
+      600
+    ],
+    "skinPixels": 2909,
+    "binaryAlpha": true,
+    "garmentInvariant": true,
+    "neckOverlap": true
+  },
+  {
+    "gender": "m",
+    "outfit": 23,
+    "skin": 6,
+    "size": [
+      400,
+      600
+    ],
+    "skinPixels": 2909,
+    "binaryAlpha": true,
+    "garmentInvariant": true,
+    "neckOverlap": true
+  },
+  {
+    "gender": "m",
+    "outfit": 23,
+    "skin": 7,
+    "size": [
+      400,
+      600
+    ],
+    "skinPixels": 2909,
+    "binaryAlpha": true,
+    "garmentInvariant": true,
+    "neckOverlap": true
+  },
+  {
+    "gender": "m",
+    "outfit": 23,
+    "skin": 8,
+    "size": [
+      400,
+      600
+    ],
+    "skinPixels": 2909,
+    "binaryAlpha": true,
+    "garmentInvariant": true,
+    "neckOverlap": true
+  },
+  {
+    "gender": "m",
+    "outfit": 24,
+    "skin": 0,
+    "size": [
+      400,
+      600
+    ],
+    "skinPixels": 2890,
+    "binaryAlpha": true,
+    "garmentInvariant": true,
+    "neckOverlap": true
+  },
+  {
+    "gender": "m",
+    "outfit": 24,
+    "skin": 1,
+    "size": [
+      400,
+      600
+    ],
+    "skinPixels": 2890,
+    "binaryAlpha": true,
+    "garmentInvariant": true,
+    "neckOverlap": true
+  },
+  {
+    "gender": "m",
+    "outfit": 24,
+    "skin": 2,
+    "size": [
+      400,
+      600
+    ],
+    "skinPixels": 2890,
+    "binaryAlpha": true,
+    "garmentInvariant": true,
+    "neckOverlap": true
+  },
+  {
+    "gender": "m",
+    "outfit": 24,
+    "skin": 3,
+    "size": [
+      400,
+      600
+    ],
+    "skinPixels": 2890,
+    "binaryAlpha": true,
+    "garmentInvariant": true,
+    "neckOverlap": true
+  },
+  {
+    "gender": "m",
+    "outfit": 24,
+    "skin": 4,
+    "size": [
+      400,
+      600
+    ],
+    "skinPixels": 2890,
+    "binaryAlpha": true,
+    "garmentInvariant": true,
+    "neckOverlap": true
+  },
+  {
+    "gender": "m",
+    "outfit": 24,
+    "skin": 5,
+    "size": [
+      400,
+      600
+    ],
+    "skinPixels": 2890,
+    "binaryAlpha": true,
+    "garmentInvariant": true,
+    "neckOverlap": true
+  },
+  {
+    "gender": "m",
+    "outfit": 24,
+    "skin": 6,
+    "size": [
+      400,
+      600
+    ],
+    "skinPixels": 2890,
+    "binaryAlpha": true,
+    "garmentInvariant": true,
+    "neckOverlap": true
+  },
+  {
+    "gender": "m",
+    "outfit": 24,
+    "skin": 7,
+    "size": [
+      400,
+      600
+    ],
+    "skinPixels": 2890,
+    "binaryAlpha": true,
+    "garmentInvariant": true,
+    "neckOverlap": true
+  },
+  {
+    "gender": "m",
+    "outfit": 24,
+    "skin": 8,
+    "size": [
+      400,
+      600
+    ],
+    "skinPixels": 2890,
+    "binaryAlpha": true,
+    "garmentInvariant": true,
+    "neckOverlap": true
+  },
+  {
+    "gender": "m",
+    "outfit": 25,
+    "skin": 0,
+    "size": [
+      400,
+      600
+    ],
+    "skinPixels": 2936,
+    "binaryAlpha": true,
+    "garmentInvariant": true,
+    "neckOverlap": true
+  },
+  {
+    "gender": "m",
+    "outfit": 25,
+    "skin": 1,
+    "size": [
+      400,
+      600
+    ],
+    "skinPixels": 2936,
+    "binaryAlpha": true,
+    "garmentInvariant": true,
+    "neckOverlap": true
+  },
+  {
+    "gender": "m",
+    "outfit": 25,
+    "skin": 2,
+    "size": [
+      400,
+      600
+    ],
+    "skinPixels": 2936,
+    "binaryAlpha": true,
+    "garmentInvariant": true,
+    "neckOverlap": true
+  },
+  {
+    "gender": "m",
+    "outfit": 25,
+    "skin": 3,
+    "size": [
+      400,
+      600
+    ],
+    "skinPixels": 2936,
+    "binaryAlpha": true,
+    "garmentInvariant": true,
+    "neckOverlap": true
+  },
+  {
+    "gender": "m",
+    "outfit": 25,
+    "skin": 4,
+    "size": [
+      400,
+      600
+    ],
+    "skinPixels": 2936,
+    "binaryAlpha": true,
+    "garmentInvariant": true,
+    "neckOverlap": true
+  },
+  {
+    "gender": "m",
+    "outfit": 25,
+    "skin": 5,
+    "size": [
+      400,
+      600
+    ],
+    "skinPixels": 2936,
+    "binaryAlpha": true,
+    "garmentInvariant": true,
+    "neckOverlap": true
+  },
+  {
+    "gender": "m",
+    "outfit": 25,
+    "skin": 6,
+    "size": [
+      400,
+      600
+    ],
+    "skinPixels": 2936,
+    "binaryAlpha": true,
+    "garmentInvariant": true,
+    "neckOverlap": true
+  },
+  {
+    "gender": "m",
+    "outfit": 25,
+    "skin": 7,
+    "size": [
+      400,
+      600
+    ],
+    "skinPixels": 2936,
+    "binaryAlpha": true,
+    "garmentInvariant": true,
+    "neckOverlap": true
+  },
+  {
+    "gender": "m",
+    "outfit": 25,
+    "skin": 8,
+    "size": [
+      400,
+      600
+    ],
+    "skinPixels": 2936,
+    "binaryAlpha": true,
+    "garmentInvariant": true,
+    "neckOverlap": true
+  }
+]

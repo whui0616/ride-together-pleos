@@ -1,0 +1,39 @@
+# 정지 이미지 합성 규격. 좌표 = 각 성별 base 이미지 픽셀.
+# part <g> <slot> <option> <file> <cx> <cy> <w> <z> [cropTop cropBottom cropLeft cropRight]
+pack C:/path/to/lumi_reorganized_v2   # 이미지팩 v2 를 푼 폴더(01_female_Lumi.zip 등 안쪽 zip 도 x_ 접두사로 풀어 둔 상태)
+base f x_01_female_Lumi/01_female_Lumi/01_base/base_female_eyes_no_hair.png 1086 1448
+base m x_02_male_Luan/02_male_Luan/01_base/base_male_eyes_no_hair.png 1024 1536
+
+# ---- 여 ----
+part f acc hood x_01_female_Lumi/01_female_Lumi/06_accessories/acc_hood.png 543 360 780 -1
+part f top tee x_01_female_Lumi/01_female_Lumi/03_tops/tee_blue.png 543 705 440 10
+part f top hoodie x_01_female_Lumi/01_female_Lumi/03_tops/hoodie_mint.png 543 720 520 10 0.42 0 0 0
+part f top coat x_01_female_Lumi/01_female_Lumi/03_tops/top_racing.png 543 735 540 10 0.33 0 0 0
+part f bottom pants x_01_female_Lumi/01_female_Lumi/04_bottoms/bottom_racing_pants.png 543 1090 320 5
+part f shoes sneakers x_01_female_Lumi/01_female_Lumi/05_shoes/shoes_loafers.png 543 1368 330 6
+part f hair bob x_01_female_Lumi/01_female_Lumi/02_hair/hair_bob_silver_mint.png 543 300 800 20
+part f hair long x_01_female_Lumi/01_female_Lumi/02_hair/hair_long_silver_mint.png 543 367 920 20
+part f hair twin x_01_female_Lumi/01_female_Lumi/02_hair/hair_twin_silver_mint.png 543 255 1040 20
+part f hair short x_02_male_Luan/02_male_Luan/02_hair/hair_short_silver_mint.png 543 272 750 20
+part f acc cap x_01_female_Lumi/01_female_Lumi/06_accessories/acc_cap.png 543 175 470 30
+part f acc fedora x_01_female_Lumi/01_female_Lumi/06_accessories/acc_fedora.png 543 130 560 30
+part f acc crown x_01_female_Lumi/01_female_Lumi/06_accessories/acc_crown.png 543 60 330 30
+part f acc glasses x_01_female_Lumi/01_female_Lumi/06_accessories/acc_glasses.png 543 400 330 15
+part f acc ribbon x_01_female_Lumi/01_female_Lumi/06_accessories/acc_ribbon.png 760 180 230 30
+
+# ---- 남 ----
+part m acc hood x_02_male_Luan/02_male_Luan/06_accessories/acc_hood.png 512 370 720 -1
+part m top tee x_02_male_Luan/02_male_Luan/03_tops/tee_blue.png 512 720 430 10
+part m top hoodie x_02_male_Luan/02_male_Luan/03_tops/hoodie_mint.png 512 735 500 10 0.42 0 0 0
+part m top coat x_02_male_Luan/02_male_Luan/03_tops/top_racing.png 512 750 520 10 0.33 0 0 0
+part m bottom pants x_02_male_Luan/02_male_Luan/04_bottoms/bottom_racing_pants.png 512 1140 400 5
+part m shoes sneakers x_02_male_Luan/02_male_Luan/05_shoes/shoes_loafers.png 512 1450 490 6
+part m hair short x_02_male_Luan/02_male_Luan/02_hair/hair_short_silver_mint.png 512 322 700 20
+part m hair bob x_01_female_Lumi/01_female_Lumi/02_hair/hair_bob_silver_mint.png 512 320 720 20
+part m hair long x_01_female_Lumi/01_female_Lumi/02_hair/hair_long_silver_mint.png 512 405 860 20
+part m hair twin x_01_female_Lumi/01_female_Lumi/02_hair/hair_twin_silver_mint.png 512 300 980 20
+part m acc cap x_02_male_Luan/02_male_Luan/06_accessories/acc_cap.png 512 215 440 30
+part m acc fedora x_02_male_Luan/02_male_Luan/06_accessories/acc_fedora.png 512 180 520 30
+part m acc crown x_02_male_Luan/02_male_Luan/06_accessories/acc_crown.png 512 110 300 30
+part m acc glasses x_02_male_Luan/02_male_Luan/06_accessories/acc_glasses.png 512 415 320 15
+part m acc ribbon x_02_male_Luan/02_male_Luan/06_accessories/acc_ribbon.png 720 230 210 30

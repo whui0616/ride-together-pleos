@@ -1,0 +1,188 @@
+{
+  "effects": 10,
+  "runtimeAtlasCount": 20,
+  "individualFrames": 480,
+  "runtimeBytes": 8903105,
+  "files": [
+    {
+      "file": "runtime/cosmic/back.png",
+      "size": [
+        1440,
+        1440
+      ],
+      "bytes": 462487,
+      "sha256": "e88260878fdd8012c2bc273ac75acc729a8daab7721c5e098d4e97a6db58b372"
+    },
+    {
+      "file": "runtime/cosmic/front.png",
+      "size": [
+        1440,
+        96
+      ],
+      "bytes": 37444,
+      "sha256": "eae752fff81c1b4360bd6c19b9cbc7755cd0135a7d9f3a92aea99ad990b5b038"
+    },
+    {
+      "file": "runtime/electric/back.png",
+      "size": [
+        1440,
+        1440
+      ],
+      "bytes": 1153802,
+      "sha256": "71da05de9205fd1ad56ca1538c66b79b76cfa574a3ab377e45f6b533f583eee3"
+    },
+    {
+      "file": "runtime/electric/front.png",
+      "size": [
+        1440,
+        96
+      ],
+      "bytes": 44403,
+      "sha256": "f098cdeac8c34120b1790ce773ba6836585a0b79857c571049b472831f809c2e"
+    },
+    {
+      "file": "runtime/fire/back.png",
+      "size": [
+        1440,
+        1440
+      ],
+      "bytes": 1284152,
+      "sha256": "93c06e0da2293597542d201e20015cd6832eccb9edd41ed6e2d7262f9df1ac25"
+    },
+    {
+      "file": "runtime/fire/front.png",
+      "size": [
+        1440,
+        96
+      ],
+      "bytes": 88307,
+      "sha256": "b59999ea7b8cae211494e6fc45cc26dfacd0572766746e6f921432cbc00c44f6"
+    },
+    {
+      "file": "runtime/ice/back.png",
+      "size": [
+        1440,
+        1440
+      ],
+      "bytes": 710107,
+      "sha256": "5fe360ff52a2867bc696b0aade470a991a730b864041c7e9c413764838e699c4"
+    },
+    {
+      "file": "runtime/ice/front.png",
+      "size": [
+        1440,
+        96
+      ],
+      "bytes": 63469,
+      "sha256": "c1b09a7d05f90aa33939f80a140317c89231f21704325211ac9b3225ca238ba3"
+    },
+    {
+      "file": "runtime/light/back.png",
+      "size": [
+        1440,
+        1440
+      ],
+      "bytes": 899389,
+      "sha256": "bf4bf792db7db07bf49f717450c59d49edb610d7fa3055a7e2c3c4987f8cc7cb"
+    },
+    {
+      "file": "runtime/light/front.png",
+      "size": [
+        1440,
+        96
+      ],
+      "bytes": 63969,
+      "sha256": "7285038ee54ff3b08040c8cf79ec026953c31c516621d4bae81fac74d8424ed3"
+    },
+    {
+      "file": "runtime/nature/back.png",
+      "size": [
+        1440,
+        1440
+      ],
+      "bytes": 906246,
+      "sha256": "7e8724199df532f0f670199eef6d48789f25ca4b3218d85b13a33a66b25c7708"
+    },
+    {
+      "file": "runtime/nature/front.png",
+      "size": [
+        1440,
+        96
+      ],
+      "bytes": 54381,
+      "sha256": "e8e8d73b6b7fdab9d0c0952741ecc9dedae51ee23bcba9b29d3b57409d12b4fa"
+    },
+    {
+      "file": "runtime/rainbow/back.png",
+      "size": [
+        1440,
+        1440
+      ],
+      "bytes": 817364,
+      "sha256": "2ecfe9d7c6dee7f35a1c4eec17d5cf2b51e840e30ca899111dfc660861a125cb"
+    },
+    {
+      "file": "runtime/rainbow/front.png",
+      "size": [
+        1440,
+        96
+      ],
+      "bytes": 57231,
+      "sha256": "415795d2a8c7d892183498b41e7c1fc9747ee20fe1d923c92bb601e4ad5488ba"
+    },
+    {
+      "file": "runtime/shadow/back.png",
+      "size": [
+        1440,
+        1440
+      ],
+      "bytes": 632131,
+      "sha256": "3de19a62b15f93607cedb75ff8c6f33dfee0f85f4161aa30b1417c7b363b4573"
+    },
+    {
+      "file": "runtime/shadow/front.png",
+      "size": [
+        1440,
+        96
+      ],
+      "bytes": 47831,
+      "sha256": "cbb984503f7c5a21227a02d7df6d589fa7b83b066782c15e870ae27c936fd796"
+    },
+    {
+      "file": "runtime/water/back.png",
+      "size": [
+        1440,
+        1440
+      ],
+      "bytes": 941419,
+      "sha256": "cda67521e2bac2d9e92d6ced9ba511c75a9bbceeeb2dea6ca19ba5680dbff5a4"
+    },
+    {
+      "file": "runtime/water/front.png",
+      "size": [
+        1440,
+        96
+      ],
+      "bytes": 57003,
+      "sha256": "3e4cfa6d803a8ce6df6b8ad95c80f5e04a6509e2fb7fb435a2dc21fedfcdaba1"
+    },
+    {
+      "file": "runtime/wind/back.png",
+      "size": [
+        1440,
+        1440
+      ],
+      "bytes": 525868,
+      "sha256": "1286cd14005910d0543165c086fe4deb94174ac1a15d28de57198b6cb5817a18"
+    },
+    {
+      "file": "runtime/wind/front.png",
+      "size": [
+        1440,
+        96
+      ],
+      "bytes": 46351,
+      "sha256": "8d03843853f9fc4e1bd8af754aa30a63b086b99196d59d7bb0167f2b15aed467"
+    }
+  ]
+}

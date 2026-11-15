@@ -1,0 +1,270 @@
+food	속이 텅 빈 것 같아
+food	뭐라도 좀 입에 넣고 싶다
+food	배고파
+food	점심 어디서 먹지
+food	저녁 뭐 먹을까
+food	출출하다
+food	커피 한 잔 마시고 싶어
+food	라면 땡긴다
+food	아침을 안 먹고 나왔어
+food	간단하게 요기라도 할까
+food	맛있는 거 먹고 싶다
+food	근처에 식당 있어?
+food	목말라 음료수 사고 싶어
+food	국밥 한 그릇 하고 싶네
+food	빵이라도 사 갈까
+food	당 떨어진다
+food	허기진다
+food	뭐 먹지
+food	밥때 됐네
+food	떡볶이 먹고 싶어
+food	아메리카노 마시고 싶다
+food	편의점 들르자
+food	치킨 시켜 먹고 싶다
+food	군것질하고 싶어
+food	아까부터 계속 배가 허전해
+food	식사하고 가자
+food	요기 좀 하자
+food	배가 홀쭉해
+food	끼니를 거른 것 같아
+food	뭐 좀 먹어야겠다
+rest	눈이 자꾸 감기네
+rest	운전한 지 너무 오래됐어
+rest	졸려
+rest	너무 피곤하다
+rest	좀 쉬었다 가자
+rest	허리가 아파
+rest	화장실 가고 싶어
+rest	잠깐 차 세우고 싶어
+rest	머리가 멍해
+rest	하품이 계속 나와
+rest	스트레칭 좀 하고 싶다
+rest	다리가 저려
+rest	두 시간째 운전 중이야
+rest	몸이 무거워
+rest	쉼터 어디 있어
+rest	눈이 침침해
+rest	어제 잠을 못 잤어
+rest	기지개 좀 켜고 싶다
+rest	소변 마려워
+rest	잠깐 눈 좀 붙이고 싶다
+rest	어깨가 뻐근해
+rest	집중이 잘 안 돼
+rest	지쳤어
+rest	쉴 데 없나
+rest	졸음쉼터 찾아줘
+rest	몸이 축 처진다
+rest	눈이 뻑뻑해
+rest	너무 오래 앉아 있었어
+rest	바람 좀 쐬고 싶다
+rest	쉬어야겠다
+route	아직 멀었어?
+route	언제 도착해
+route	얼마나 남았어
+route	몇 시에 도착해
+route	거의 다 왔어?
+route	지금 어디쯤이야
+route	목적지까지 몇 킬로야
+route	길 막혀?
+route	다른 길로 가면 더 빨라?
+route	몇 분 더 가야 돼
+route	도착 예정 시간 알려줘
+route	여기서 얼마나 걸려
+route	제시간에 갈 수 있을까
+route	늦지 않겠지
+route	경로 다시 찾아줘
+route	다음에 어디서 꺾어
+route	고속도로 언제 빠져
+route	막히는 구간 있어?
+route	이 길 맞아?
+route	가는 길 알려줘
+route	남은 거리 알려줘
+route	한참 가야 해?
+route	아직도 한참이야?
+route	금방 도착하지?
+route	몇 시쯤 들어가겠어
+route	우회전 언제 해
+route	지름길 없어?
+route	아직 반도 안 왔네
+route	얼마나 더 가야 돼
+route	도착하려면 멀었나
+message	엄마한테 늦는다고 전해야 하는데
+message	문자 보내줘
+message	카톡 왔어?
+message	답장해 줘
+message	아내한테 연락해야 해
+message	친구한테 곧 간다고 보내 줘
+message	메시지 읽어 줘
+message	누가 연락했어?
+message	팀장님한테 회의 늦는다고 알려야 해
+message	새 메시지 있어?
+message	방금 온 거 뭐야
+message	알림 온 거 확인해 줘
+message	동생한테 답 좀 보내 줘
+message	단톡방에 뭐 왔어
+message	도착하면 전화한다고 남겨 줘
+message	아빠한테 출발했다고 해 줘
+message	문자 확인해야 하는데
+message	읽지 않은 메시지 있어?
+message	여자친구한테 사랑한다고 보내
+message	회사에 조금 늦는다고 전달해 줘
+message	누구한테 온 거야
+message	메일 왔어?
+message	보낸 사람 누구야
+message	답 안 해도 되나
+message	걔한테 알았다고 해
+message	남편한테 장 봐 오라고 해 줘
+message	방금 진동 울린 거 뭐야
+message	알려 줘야 할 게 있는데 손을 못 쓰겠네
+message	엄마 문자 뭐래
+message	문자 왔나 봐
+bored	아무 말이나 해 줘
+bored	심심해
+bored	재밌는 얘기 해 줘
+bored	노래 불러 줘
+bored	퀴즈 내 줘
+bored	끝말잇기 하자
+bored	농담 하나 해 봐
+bored	지루하다
+bored	너무 따분해
+bored	뭐 재미난 거 없나
+bored	수다 떨자
+bored	말동무 좀 해 줘
+bored	나랑 놀아 줘
+bored	게임하자
+bored	웃긴 거 말해 줘
+bored	시간이 안 가
+bored	길이 너무 지루하다
+bored	옛날이야기 해 줘
+bored	수수께끼 내 봐
+bored	아재개그 해 줘
+bored	할 게 없네
+bored	아무거나 얘기해 봐
+bored	신나는 거 없을까
+bored	나 좀 웃겨 봐
+bored	말 좀 걸어 줘
+bored	조용하니까 심심하다
+bored	재미있는 사실 알려 줘
+bored	뭐 하고 놀까
+bored	대화하자
+bored	지겨워 죽겠어
+control	좀 춥다, 따뜻하게 해 줘
+control	창문 열어 줘
+control	에어컨 켜 줘
+control	너무 더워 시원하게 해 줘
+control	문 잠가 줘
+control	트렁크 열어
+control	시트 열선 켜 줘
+control	히터 꺼 줘
+control	와이퍼 켜 줘
+control	라이트 켜 줘
+control	선루프 닫아 줘
+control	온도 좀 낮춰
+control	바람 세게 해 줘
+control	창문 좀 내려 줘
+control	비상등 켜 줘
+control	사이드미러 접어 줘
+control	시트 뒤로 젖혀 줘
+control	실내등 켜 줘
+control	습기 차서 김 서림 없애 줘
+control	핸들 따뜻하게 해 줘
+control	에어컨 약하게
+control	창문 닫아
+control	차 문 열어
+control	환기 좀 시켜 줘
+control	송풍 세기 올려
+control	볼륨 좀 올려 줘
+control	시동 꺼
+control	상향등 켜
+control	뒷유리 열선 켜
+control	라디오 켜 줘
+mood	오늘 회사에서 혼났어
+mood	기분이 안 좋아
+mood	우울하다
+mood	짜증 나
+mood	스트레스 받아
+mood	너무 힘들다
+mood	속상해
+mood	오늘 일이 너무 안 풀렸어
+mood	헤어졌어
+mood	마음이 복잡해
+mood	눈물 날 것 같아
+mood	화가 나
+mood	불안해
+mood	외로워
+mood	다 그만두고 싶다
+mood	시험 망쳤어
+mood	아무것도 하기 싫어
+mood	골치 아픈 일이 많아
+mood	친구랑 싸웠어
+mood	오늘 최악이야
+mood	나 너무 한심해
+mood	걱정이 많아
+mood	상사 때문에 미치겠어
+mood	기분 꿀꿀하다
+mood	마음이 무거워
+mood	위로해 줘
+mood	울적해
+mood	서러워
+mood	허무하다
+mood	멘탈 나갔어
+greeting	너 진짜 귀엽다
+greeting	안녕
+greeting	고마워
+greeting	잘했어
+greeting	최고야
+greeting	반가워
+greeting	좋은 아침
+greeting	수고했어
+greeting	덕분에 살았다
+greeting	너 똑똑하다
+greeting	사랑해
+greeting	오늘도 잘 부탁해
+greeting	너밖에 없다
+greeting	역시 내 친구
+greeting	잘 자
+greeting	다녀왔어
+greeting	하이
+greeting	좋은 하루
+greeting	너 멋지다
+greeting	칭찬해
+greeting	땡큐
+greeting	너랑 있으면 좋아
+greeting	다음에 또 보자
+greeting	오랜만이야
+greeting	잘 지냈어?
+greeting	굿모닝
+greeting	수고 많았어
+greeting	너 대단하다
+greeting	기특하네
+greeting	든든하다
+other	내일 비 온대
+other	오늘 뉴스 봤어?
+other	지구는 둥글어
+other	주식이 떨어졌어
+other	너는 몇 살이야?
+other	축구 경기 누가 이겼어
+other	저 건물 뭐야
+other	내일 회의가 있어
+other	고양이 키우고 싶다
+other	이번 주말에 뭐 하지
+other	환율 얼마야
+other	저 차 멋있다
+other	오늘 무슨 요일이야
+other	요즘 유행하는 게 뭐야
+other	엄마 생일 선물 뭐 사지
+other	저기 사람 많네
+other	하늘이 예쁘다
+other	이사 가야 하는데
+other	영어 공부 해야 하는데
+other	휴대폰 바꿀까
+other	비트코인 어때
+other	너는 누가 만들었어
+other	아까 그 가게 이름이 뭐였지
+other	오늘 미세먼지 어때
+other	대통령이 누구야
+other	여름휴가 어디 갈까
+other	저녁에 운동 가야지
+other	강아지가 보고 싶다
+other	이 차 연비 어때
+other	세차해야겠다

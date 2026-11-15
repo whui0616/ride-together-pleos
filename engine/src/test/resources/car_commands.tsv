@@ -1,0 +1,129 @@
+# 운전자 말 → 기대 해석. 형식: 문장<TAB>기대
+# 기대: 조작이름[@자리][~양][=숫자][?]  ?는 '실행 전에 묻기', REFUSED는 거절, NONE은 조작 아님
+# 자리·양·숫자는 적었을 때만 비교한다.
+히터 틀어 줘	HEATER_ON
+히터 좀 켜 줄래?	HEATER_ON
+난방 켜	HEATER_ON
+히터 꺼 줘	CLIMATE_OFF
+히터 그만 틀어	CLIMATE_OFF
+히터 좀 세게 틀어 줘	WARMER
+히터 바람 약하게	FAN_DOWN
+히터가 너무 뜨거워	COOLER?
+히터	HEATER_ON?
+에어컨 켜 줘	AC_ON
+에어컨 좀 틀어	AC_ON
+에어컨 좀	AC_ON
+냉방 작동해 줘	AC_ON
+에어컨 꺼	AC_OFF
+에어컨 끄자	AC_OFF
+에어컨 빵빵하게 틀어 줘	COOLER
+에어컨 좀 약하게 해 줘	FAN_DOWN
+에어컨 때문에 추워	WARMER?
+에어컨 22도로 맞춰 줘	SET_TEMPERATURE=22
+온도 24도로 해 줘	SET_TEMPERATURE=24
+온도를 이십오 도로 맞춰	SET_TEMPERATURE=25
+스물세 도로 맞춰 줘	SET_TEMPERATURE=23
+온도 2도 올려 줘	WARMER=2
+온도 좀 올려	WARMER
+온도 좀 낮춰 줘	COOLER
+온도 한 도만 내려	COOLER=1
+히터 26도	SET_TEMPERATURE=26
+40도로 맞춰	SET_TEMPERATURE=30
+따뜻하게 해 줘	WARMER
+좀 따뜻하게	WARMER
+시원하게 해 줘	COOLER
+차 안 좀 식혀 줘	COOLER
+추워	WARMER?
+너무 춥다	WARMER?
+좀 쌀쌀하네	WARMER?
+손이 시려	WHEEL_HEAT_ON?
+추운데 어떻게 좀 해 줘	WARMER
+더워	COOLER?
+아 덥다 더워	COOLER?
+땀이 나네	COOLER?
+더워 죽겠는데 어떻게 해 줘	COOLER
+바람 세게	FAN_UP
+바람 좀 세게 해 줘	FAN_UP
+바람 약하게 해 줘	FAN_DOWN
+바람 좀 줄여	FAN_DOWN
+바람이 너무 세	FAN_DOWN?
+바람 최대로	FAN_UP
+바람 꺼 줘	CLIMATE_OFF
+앞유리 김 서림 없애 줘	DEFROST_ON
+김 서렸어	DEFROST_ON?
+앞이 뿌옇게 안 보여	DEFROST_ON?
+성에 제거 켜 줘	DEFROST_ON
+성에 제거 꺼	DEFROST_OFF
+환기 좀 하자	FRESH_AIR
+외기로 바꿔 줘	FRESH_AIR
+공기가 답답해	FRESH_AIR?
+차에서 냄새 나	FRESH_AIR?
+내기 순환으로 해 줘	RECIRCULATE
+내기 모드 켜	RECIRCULATE
+열선 켜 줘	SEAT_HEAT_ON@DRIVER
+엉따 좀 켜 줘	SEAT_HEAT_ON@DRIVER
+조수석 열선 켜 줘	SEAT_HEAT_ON@PASSENGER
+옆자리 열선도 켜 줄래	SEAT_HEAT_ON@PASSENGER
+뒷좌석 열선 틀어 줘	SEAT_HEAT_ON@REAR
+열선 꺼	SEAT_HEAT_OFF
+운전석 열선 세게	SEAT_HEAT_ON@DRIVER~FULL
+열선 약하게 켜 줘	SEAT_HEAT_ON~LITTLE
+엉덩이가 차가워	SEAT_HEAT_ON?
+열선 좀	SEAT_HEAT_ON
+통풍 시트 켜 줘	SEAT_VENT_ON
+통풍 꺼	SEAT_VENT_OFF
+조수석 통풍 켜	SEAT_VENT_ON@PASSENGER
+핸들 열선 켜 줘	WHEEL_HEAT_ON
+핸들 열선 꺼	WHEEL_HEAT_OFF
+핸들이 너무 차가워	WHEEL_HEAT_ON?
+운전대 열선 켜	WHEEL_HEAT_ON
+창문 열어 줘	WINDOW_OPEN@DRIVER
+창문 좀 열어	WINDOW_OPEN@DRIVER
+창문 조금만 열어 줘	WINDOW_OPEN~LITTLE
+창문 살짝 내려 줘	WINDOW_OPEN~LITTLE
+창문 닫아	WINDOW_CLOSE
+창문 다 닫아 줘	WINDOW_CLOSE@ALL
+창문 올려 줘	WINDOW_CLOSE
+조수석 창문 열어	WINDOW_OPEN@PASSENGER
+뒷창문 내려 줘	WINDOW_OPEN@REAR
+창문 전부 열어	WINDOW_OPEN@ALL
+졸린데 창문 좀 열어 줘	WINDOW_OPEN
+창문 좀	WINDOW_OPEN
+창문	WINDOW_OPEN?
+선루프 열어 줘	SUNROOF_OPEN
+선루프 닫아	SUNROOF_CLOSE
+선루프 살짝 열어	SUNROOF_OPEN~LITTLE
+실내등 켜 줘	CABIN_LIGHT_ON
+실내등 꺼	CABIN_LIGHT_OFF
+불 좀 켜 줘	CABIN_LIGHT_ON
+불 꺼 줘	CABIN_LIGHT_OFF
+문 잠가 줘	DOOR_LOCK
+문 좀 잠궈	DOOR_LOCK
+문 열어 줘	REFUSED
+문 잠금 해제해 줘	REFUSED
+트렁크 열어	REFUSED
+시동 꺼 줘	REFUSED
+와이퍼 켜 줘	REFUSED
+상향등 켜	REFUSED
+전조등 꺼 줘	REFUSED
+에어컨 켜지 마	NONE
+히터 안 켜도 돼	NONE
+에어컨 켜져 있어?	NONE
+지금 몇 도야?	NONE
+안 추워	NONE
+춥지는 않아	NONE
+밖이 30도래	NONE
+바람 쐬고 싶다	NONE
+배고파	NONE
+아들한테 곧 도착한다고 보내 줘	NONE
+엄마한테 에어컨 켜라고 문자 보내	NONE
+창밖 풍경 예쁘다	NONE
+트렁크에 짐이 많아	NONE
+오늘 온도가 몇 도래	NONE
+노래 틀어 줘	NONE
+심심해	NONE
+고속도로 얼마나 남았어	NONE
+답답해 죽겠어	NONE
+김밥 먹고 싶다	NONE
+너무 피곤하다	NONE
+기분이 좀 그래	NONE

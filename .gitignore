@@ -1,0 +1,33 @@
+*.iml
+.gradle
+/local.properties
+/.idea
+.DS_Store
+/build
+/app/build
+/engine/build
+/captures
+.externalNativeBuild
+.cxx
+.kotlin
+~$*.docx
+
+# 빌드 결과물·서명 키는 올리지 않는다(디버그 APK에는 local.properties의 Gemini 키가 들어간다)
+*.apk
+*.aab
+*.jks
+*.keystore
+
+# 판타지 옷 원본·중간 PNG 는 드라이브(02_디자인)에. 앱 에셋 webp 만 저장소에
+tools/character/pixel/fantasy/**/*.png
+tools/character/pixel/fantasy/*.png
+tools/character/pixel/fantasy/staged/
+# 동물 잠옷 원본·중간 PNG 와 staged 사본은 드라이브에. 앱 에셋 webp 만 저장소에
+tools/character/pixel/animal/**/*.png
+tools/character/pixel/animal/*.png
+tools/character/pixel/animal/staged/
+# 아우라 이펙트 원본·프레임·미리보기·runtime 사본은 저장소에 넣지 않는다(앱용 시트는 app/src/main/assets/character/effects)
+tools/character/effects_v1/frames/
+tools/character/effects_v1/previews/
+tools/character/effects_v1/sources/
+tools/character/effects_v1/runtime/

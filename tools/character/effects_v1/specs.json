@@ -1,0 +1,52 @@
+[
+  {
+    "id": "water",
+    "name": "물",
+    "prompt": "A single isolated elemental AURA game VFX sprite for a cozy chibi pixel-art RPG. Portrait 2:3 composition. This is an effect-only BACKGROUND layer: NO character, human silhouette, clothes, face, weapons, text, frame or scenery. Keep central 45 percent of canvas mostly EMPTY and genuinely TRANSPARENT for the character. Effects flow up along both outer sides, with a thin glowing flattened elliptical ground ring centered at 89 percent canvas height, width 64 percent and height 7 percent. All artwork inside canvas with generous margins. Crisp 16-bit pixel clusters and stepped edges, tasteful small glow, transparent RGBA background and transparent center. No photorealism, vector art or opaque color wash. Turquoise flowing WATER aura: curling water ribbons rising along both sides, distinct splash crests, white foam pixel tips, scattered rounded droplets and bubbles; rippling aqua ground ring. Fluid and refreshing, cyan/teal/ice white."
+  },
+  {
+    "id": "fire",
+    "name": "불",
+    "prompt": "A single isolated elemental AURA game VFX sprite for a cozy chibi pixel-art RPG. Portrait 2:3 composition. This is an effect-only BACKGROUND layer: NO character, human silhouette, clothes, face, weapons, text, frame or scenery. Keep central 45 percent of canvas mostly EMPTY and genuinely TRANSPARENT for the character. Effects flow up along both outer sides, with a thin glowing flattened elliptical ground ring centered at 89 percent canvas height, width 64 percent and height 7 percent. All artwork inside canvas with generous margins. Crisp 16-bit pixel clusters and stepped edges, tasteful small glow, transparent RGBA background and transparent center. No photorealism, vector art or opaque color wash. Warm FIRE aura: upward flickering orange and scarlet flame tongues around both sides, amber embers, bright golden inner flame tips, a smoldering orange elliptical ground ring. Energetic but center remains clear. Orange/red/gold palette."
+  },
+  {
+    "id": "electric",
+    "name": "전기",
+    "prompt": "A single isolated elemental AURA game VFX sprite for a cozy chibi pixel-art RPG. Portrait 2:3 composition. This is an effect-only BACKGROUND layer: NO character, human silhouette, clothes, face, weapons, text, frame or scenery. Keep central 45 percent of canvas mostly EMPTY and genuinely TRANSPARENT for the character. Effects flow up along both outer sides, with a thin glowing flattened elliptical ground ring centered at 89 percent canvas height, width 64 percent and height 7 percent. All artwork inside canvas with generous margins. Crisp 16-bit pixel clusters and stepped edges, tasteful small glow, transparent RGBA background and transparent center. No photorealism, vector art or opaque color wash. ELECTRIC aura: angular yellow lightning branches and small zigzag sparks along both sides, electric blue accents, thin fragmented golden electrical ground ring. Distinct hard zigzag silhouettes, limited soft glow, clear center. Bright yellow/ice-white/blue."
+  },
+  {
+    "id": "rainbow",
+    "name": "무지개",
+    "prompt": "A single isolated elemental AURA game VFX sprite for a cozy chibi pixel-art RPG. Portrait 2:3 composition. This is an effect-only BACKGROUND layer: NO character, human silhouette, clothes, face, weapons, text, frame or scenery. Keep central 45 percent of canvas mostly EMPTY and genuinely TRANSPARENT for the character. Effects flow up along both outer sides, with a thin glowing flattened elliptical ground ring centered at 89 percent canvas height, width 64 percent and height 7 percent. All artwork inside canvas with generous margins. Crisp 16-bit pixel clusters and stepped edges, tasteful small glow, transparent RGBA background and transparent center. No photorealism, vector art or opaque color wash. RAINBOW aura: elegant flowing multicolored prismatic ribbons along both sides and rainbow elliptical ground ring. Clearly distinct red orange yellow green cyan blue violet streaks, scattered tiny diamond sparkles, magical but not neon wash, clear center."
+  },
+  {
+    "id": "ice",
+    "name": "얼음",
+    "prompt": "A single isolated elemental AURA game VFX sprite for a cozy chibi pixel-art RPG. Portrait 2:3 composition. This is an effect-only BACKGROUND layer: NO character, human silhouette, clothes, face, weapons, text, frame or scenery. Keep central 45 percent of canvas mostly EMPTY and genuinely TRANSPARENT for the character. Effects flow up along both outer sides, with a thin glowing flattened elliptical ground ring centered at 89 percent canvas height, width 64 percent and height 7 percent. All artwork inside canvas with generous margins. Crisp 16-bit pixel clusters and stepped edges, tasteful small glow, transparent RGBA background and transparent center. No photorealism, vector art or opaque color wash. ICE aura: sharp pale-blue and white crystalline shards rising along both sides, small snowflake-like pixel sparks, frosty faceted cyan ground ring. Distinct angular translucent ice crystals, cool restrained radiance, clear center."
+  },
+  {
+    "id": "wind",
+    "name": "바람",
+    "prompt": "A single isolated elemental AURA game VFX sprite for a cozy chibi pixel-art RPG. Portrait 2:3 composition. This is an effect-only BACKGROUND layer: NO character, human silhouette, clothes, face, weapons, text, frame or scenery. Keep central 45 percent of canvas mostly EMPTY and genuinely TRANSPARENT for the character. Effects flow up along both outer sides, with a thin glowing flattened elliptical ground ring centered at 89 percent canvas height, width 64 percent and height 7 percent. All artwork inside canvas with generous margins. Crisp 16-bit pixel clusters and stepped edges, tasteful small glow, transparent RGBA background and transparent center. No photorealism, vector art or opaque color wash. WIND aura: slender curling mint-white gust trails and small airy spiral strokes sweeping upward along both sides, a swirling elliptical wind ring under feet. Very light and spacious with few streaks, pale mint/seafoam/white, no clouds filling center."
+  },
+  {
+    "id": "nature",
+    "name": "자연",
+    "prompt": "A single isolated elemental AURA game VFX sprite for a cozy chibi pixel-art RPG. Portrait 2:3 composition. This is an effect-only BACKGROUND layer: NO character, human silhouette, clothes, face, weapons, text, frame or scenery. Keep central 45 percent of canvas mostly EMPTY and genuinely TRANSPARENT for the character. Effects flow up along both outer sides, with a thin glowing flattened elliptical ground ring centered at 89 percent canvas height, width 64 percent and height 7 percent. All artwork inside canvas with generous margins. Crisp 16-bit pixel clusters and stepped edges, tasteful small glow, transparent RGBA background and transparent center. No photorealism, vector art or opaque color wash. NATURE aura: delicate emerald green energy curls with floating tiny green leaves and warm lime motes along both sides, leafy green elliptical ground ring. Gentle druid magic, clear center, green/leaf gold accents; no rooted plants or solid trees."
+  },
+  {
+    "id": "shadow",
+    "name": "어둠",
+    "prompt": "A single isolated elemental AURA game VFX sprite for a cozy chibi pixel-art RPG. Portrait 2:3 composition. This is an effect-only BACKGROUND layer: NO character, human silhouette, clothes, face, weapons, text, frame or scenery. Keep central 45 percent of canvas mostly EMPTY and genuinely TRANSPARENT for the character. Effects flow up along both outer sides, with a thin glowing flattened elliptical ground ring centered at 89 percent canvas height, width 64 percent and height 7 percent. All artwork inside canvas with generous margins. Crisp 16-bit pixel clusters and stepped edges, tasteful small glow, transparent RGBA background and transparent center. No photorealism, vector art or opaque color wash. SHADOW aura: violet and deep purple wisp curls around both sides with magenta edges, tiny purple motes and a thin violet elliptical shadow ring. Clearly visible against dark game backgrounds, mysterious magic, no skulls or monsters, center transparent."
+  },
+  {
+    "id": "light",
+    "name": "빛",
+    "prompt": "A single isolated elemental AURA game VFX sprite for a cozy chibi pixel-art RPG. Portrait 2:3 composition. This is an effect-only BACKGROUND layer: NO character, human silhouette, clothes, face, weapons, text, frame or scenery. Keep central 45 percent of canvas mostly EMPTY and genuinely TRANSPARENT for the character. Effects flow up along both outer sides, with a thin glowing flattened elliptical ground ring centered at 89 percent canvas height, width 64 percent and height 7 percent. All artwork inside canvas with generous margins. Crisp 16-bit pixel clusters and stepped edges, tasteful small glow, transparent RGBA background and transparent center. No photorealism, vector art or opaque color wash. HOLY LIGHT aura: warm gold and ivory luminous rising rays along both sides, small four-point gold sparkles and a thin radiant gold ground ring. Elegant blessing effect, no religious symbols, not rainbow, center completely clear."
+  },
+  {
+    "id": "cosmic",
+    "name": "별빛",
+    "prompt": "A single isolated elemental AURA game VFX sprite for a cozy chibi pixel-art RPG. Portrait 2:3 composition. This is an effect-only BACKGROUND layer: NO character, human silhouette, clothes, face, weapons, text, frame or scenery. Keep central 45 percent of canvas mostly EMPTY and genuinely TRANSPARENT for the character. Effects flow up along both outer sides, with a thin glowing flattened elliptical ground ring centered at 89 percent canvas height, width 64 percent and height 7 percent. All artwork inside canvas with generous margins. Crisp 16-bit pixel clusters and stepped edges, tasteful small glow, transparent RGBA background and transparent center. No photorealism, vector art or opaque color wash. COSMIC STARLIGHT aura: indigo and lavender star wisps along both sides, small twinkling four-point stars and a few tiny pale-blue planetary glints, thin purple-blue elliptical orbital ground ring. Subtle galaxy magic without a filled nebula background, transparent center."
+  }
+]

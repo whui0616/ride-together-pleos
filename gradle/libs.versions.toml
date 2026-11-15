@@ -1,0 +1,22 @@
+[versions]
+agp = "9.4.1"
+kotlin = "2.2.10"
+junit = "4.13.2"
+pleosNavi = "3.0.5"
+pleosVehicle = "2.3.2"
+pleosSpeech = "3.3.1"
+onnxruntime = "1.31.1"
+onnxruntimeJvm = "1.17.3"
+
+[libraries]
+junit = { group = "junit", name = "junit", version.ref = "junit" }
+pleos-navihelper = { group = "ai.pleos.playground", name = "NaviHelper", version.ref = "pleosNavi" }
+pleos-vehicle = { group = "ai.pleos.playground", name = "Vehicle", version.ref = "pleosVehicle" }
+pleos-tts = { group = "ai.pleos.playground", name = "TextToSpeech", version.ref = "pleosSpeech" }
+pleos-stt = { group = "ai.pleos.playground", name = "SpeechToText", version.ref = "pleosSpeech" }
+onnxruntime-android = { group = "com.microsoft.onnxruntime", name = "onnxruntime-android", version.ref = "onnxruntime" }
+onnxruntime-jvm = { group = "com.microsoft.onnxruntime", name = "onnxruntime", version.ref = "onnxruntimeJvm" }
+
+[plugins]
+android-application = { id = "com.android.application", version.ref = "agp" }
+kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }

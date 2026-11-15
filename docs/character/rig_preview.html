@@ -1,0 +1,367 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>루미 리깅 벤치</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Jua&family=IBM+Plex+Sans+KR:wght@400;600&family=IBM+Plex+Mono:wght@400;600&display=swap">
+<style>
+/* 레이아웃: 왼쪽은 격자 무대(캐릭터+뼈대), 오른쪽은 작업대 패널(코디 → 포즈 → 관절). 좁으면 위아래로 쌓는다. */
+:root {
+  --bg: #EEF4F4;        /* 민트 기운 도는 종이 */
+  --panel: #FFFFFF;
+  --ink: #1F2338;       /* 코트 네이비 */
+  --sub: #5B647A;
+  --line: #D3DEE0;
+  --mint: #2BB3C4;      /* 눈동자 청록 */
+  --gold: #C99520;      /* 트림 골드 */
+  --stage: #F8FBFB;
+  --grid: #E1ECEC;
+  --bone: #E0563B;
+  --display: "Jua", "IBM Plex Sans KR", system-ui, sans-serif;
+  --body: "IBM Plex Sans KR", system-ui, -apple-system, "Malgun Gothic", sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, Consolas, monospace;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --bg: #141725; --panel: #1C2032; --ink: #EAF2F3; --sub: #A2ABC0; --line: #2E3449;
+  --mint: #5ED6E2; --gold: #E8B84A; --stage: #191D2D; --grid: #23293D; --bone: #FF7A5C; color-scheme: dark } }
+:root[data-theme="dark"] {
+  --bg: #141725; --panel: #1C2032; --ink: #EAF2F3; --sub: #A2ABC0; --line: #2E3449;
+  --mint: #5ED6E2; --gold: #E8B84A; --stage: #191D2D; --grid: #23293D; --bone: #FF7A5C; color-scheme: dark }
+* { box-sizing: border-box }
+body { background: var(--bg); color: var(--ink); font: 15px/1.55 var(--body);
+  padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); padding-block: 20px 40px }
+.wrap { max-width: 1180px; margin: 0 auto; display: grid; gap: 18px }
+header { display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px 16px }
+h1 { font: 34px/1.1 var(--display); margin: 0; letter-spacing: .01em; text-wrap: balance }
+header p { margin: 0; color: var(--sub); max-width: 62ch }
+.bench { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 420px); gap: 18px; align-items: start }
+@media (max-width: 860px) { .bench { grid-template-columns: minmax(0, 1fr) } }
+.stage { background: var(--stage); border: 1px solid var(--line); border-radius: 14px; position: relative; overflow: hidden;
+  background-image: linear-gradient(var(--grid) 1px, transparent 1px), linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+  background-size: 24px 24px; }
+.stage canvas { display: block; width: 100%; max-width: 100%; aspect-ratio: 2 / 3; touch-action: none; cursor: grab }
+.stage canvas.drag { cursor: grabbing }
+.hud { position: absolute; left: 12px; bottom: 10px; right: 12px; display: flex; justify-content: space-between; gap: 8px;
+  font: 12px var(--mono); color: var(--sub); pointer-events: none }
+.panel { background: var(--panel); border: 1px solid var(--line); border-radius: 14px; padding: 16px 18px; display: grid; gap: 16px; min-width: 0 }
+.group { display: grid; gap: 8px; min-width: 0 }
+.group h2 { margin: 0; font: 600 12px var(--body); letter-spacing: .08em; text-transform: uppercase; color: var(--sub);
+  display: flex; justify-content: space-between; align-items: baseline }
+.group h2 small { font: 11px var(--mono); letter-spacing: 0; text-transform: none }
+.chips { display: flex; flex-wrap: wrap; gap: 6px }
+.chip { font: 14px var(--body); border: 1px solid var(--line); background: transparent; color: var(--ink);
+  border-radius: 999px; padding: 5px 12px; cursor: pointer }
+.chip:hover { border-color: var(--mint) }
+.chip[aria-pressed="true"] { background: var(--ink); color: var(--panel); border-color: var(--ink) }
+.chip:focus-visible, input:focus-visible, button:focus-visible { outline: 2px solid var(--mint); outline-offset: 2px }
+.swatch { width: 26px; height: 26px; border-radius: 50%; border: 2px solid var(--line); cursor: pointer; padding: 0 }
+.swatch[aria-pressed="true"] { border-color: var(--ink); box-shadow: 0 0 0 2px var(--panel) inset }
+.slots { display: grid; grid-template-columns: 64px minmax(0, 1fr); gap: 8px 10px; align-items: center }
+.slots label { font-size: 13px; color: var(--sub) }
+.joints { display: grid; grid-template-columns: 92px minmax(0, 1fr) 46px; gap: 4px 10px; align-items: center; font-size: 13px }
+.joints span.v { font: 12px var(--mono); text-align: right; font-variant-numeric: tabular-nums; color: var(--sub) }
+.joints label.on { color: var(--bone); font-weight: 600 }
+input[type=range] { width: 100%; accent-color: var(--mint) }
+.row { display: flex; flex-wrap: wrap; gap: 8px; align-items: center }
+.toggle { display: inline-flex; gap: 6px; align-items: center; font-size: 13px; color: var(--sub) }
+.note { font-size: 13px; color: var(--sub); margin: 0 }
+.note code { font: 12px var(--mono); color: var(--ink) }
+.sheet { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 12px }
+.sheet figure { margin: 0; background: var(--stage); border: 1px solid var(--line); border-radius: 12px; padding: 8px }
+.sheet canvas { width: 100%; aspect-ratio: 2/3; display: block }
+.sheet figcaption { font-size: 13px; text-align: center; color: var(--sub) }
+body.shot header, body.shot .bench { display: none }
+</style>
+
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1>루미 리깅 벤치</h1>
+    <p>기본은 메리야스와 빤스만 입은 상태예요. 관절 점을 끌어 포즈를 잡고, 오른쪽에서 머리·옷·장식을 바꿔 보세요. 앱과 같은 <code style="font-family:var(--mono)">rig.json</code>을 읽습니다.</p>
+  </header>
+
+  <div class="bench">
+    <div class="stage">
+      <canvas id="stage" width="800" height="1200" aria-label="캐릭터 무대. 관절을 끌어 회전"></canvas>
+      <div class="hud"><span id="hudBone">관절을 끌어 보세요</span><span id="hudInfo"></span></div>
+    </div>
+
+    <div class="panel">
+      <div class="group">
+        <h2>프리셋 <small>원화 3종 + 기본</small></h2>
+        <div class="chips" id="presets"></div>
+      </div>
+      <div class="group">
+        <h2>코디</h2>
+        <div class="slots" id="slots"></div>
+      </div>
+      <div class="group">
+        <h2>머리색</h2>
+        <div class="row" id="hairColors"></div>
+      </div>
+      <div class="group">
+        <h2>표정 · 포즈 · 동작</h2>
+        <div class="chips" id="moods"></div>
+        <div class="chips" id="poses"></div>
+        <div class="chips" id="anims"></div>
+      </div>
+      <div class="group">
+        <h2>관절 <small>도(°) · 오른쪽은 대칭 기준</small></h2>
+        <div class="row">
+          <label class="toggle"><input type="checkbox" id="showBones" checked> 뼈대 보기</label>
+          <button class="chip" id="resetPose" type="button">포즈 초기화</button>
+        </div>
+        <div class="joints" id="joints"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="group">
+    <h2>한눈에 보기 <small>기본 · 프리셋 · 포즈</small></h2>
+    <div class="sheet" id="sheet"></div>
+  </div>
+</div>
+
+<script>
+const RIG = {"version":1,"canvas":[200,300],"bones":[{"name":"root","parent":null,"x":100,"y":214,"rot":0},{"name":"torso","parent":"root","x":0,"y":0,"rot":0},{"name":"neck","parent":"torso","x":0,"y":-48,"rot":0},{"name":"head","parent":"neck","x":0,"y":-4,"rot":0},{"name":"upperArmL","parent":"torso","x":-16,"y":-43,"rot":28},{"name":"forearmL","parent":"upperArmL","x":0,"y":21,"rot":14},{"name":"handL","parent":"forearmL","x":0,"y":19,"rot":0},{"name":"upperArmR","parent":"torso","x":16,"y":-43,"rot":28,"mirror":true},{"name":"forearmR","parent":"upperArmR","x":0,"y":21,"rot":14,"mirror":true},{"name":"handR","parent":"forearmR","x":0,"y":19,"rot":0,"mirror":true},{"name":"thighL","parent":"root","x":-9,"y":2,"rot":3},{"name":"shinL","parent":"thighL","x":0,"y":26,"rot":-3},{"name":"footL","parent":"shinL","x":0,"y":24,"rot":0},{"name":"thighR","parent":"root","x":9,"y":2,"rot":3,"mirror":true},{"name":"shinR","parent":"thighR","x":0,"y":26,"rot":-3,"mirror":true},{"name":"footR","parent":"shinR","x":0,"y":24,"rot":0,"mirror":true}],"parts":[{"bone":"head","z":-1,"d":"M -54 -46 Q -58 -110 0 -112 Q 58 -110 54 -46 Q 52 -8 40 4 L -40 4 Q -52 -8 -54 -46 Z","fill":"$coatLining","stroke":"$line","sw":1.6,"slot":"acc","option":"hood"},{"bone":"head","z":-0.5,"d":"M -42 -66 Q -66 -64 -66 -34 Q -66 -6 -54 10 Q -58 -14 -48 -30 Q -44 -48 -42 -66 Z","fill":"$hair","stroke":"$line","sw":1.6,"slot":"hair","option":"twin"},{"bone":"head","z":-0.5,"d":"M 42 -66 Q 66 -64 66 -34 Q 66 -6 54 10 Q 58 -14 48 -30 Q 44 -48 42 -66 Z","fill":"$hair","stroke":"$line","sw":1.6,"slot":"hair","option":"twin"},{"bone":"head","z":-0.4,"d":"M -64 -20 Q -64 -2 -54 10 Q -56 -6 -58 -18 Z","fill":"$hairTip","slot":"hair","option":"twin"},{"bone":"head","z":-0.4,"d":"M 64 -20 Q 64 -2 54 10 Q 56 -6 58 -18 Z","fill":"$hairTip","slot":"hair","option":"twin"},{"bone":"head","z":0,"d":"M -48 -50 Q -52 -97 0 -98 Q 52 -97 48 -50 Q 50 -18 38 -4 Q 30 0 26 -10 L -26 -10 Q -30 0 -38 -4 Q -50 -18 -48 -50 Z","fill":"$hair","stroke":"$line","sw":1.6,"slot":"hair","option":"bob"},{"bone":"head","z":0,"d":"M -45 -54 Q -48 -97 0 -98 Q 48 -97 45 -54 Q 46 -38 40 -30 L -40 -30 Q -46 -38 -45 -54 Z","fill":"$hair","stroke":"$line","sw":1.6,"slot":"hair","option":"short"},{"bone":"head","z":0,"d":"M -48 -50 Q -52 -97 0 -98 Q 52 -97 48 -50 Q 56 0 46 34 Q 36 26 30 10 L -30 10 Q -36 26 -46 34 Q -56 0 -48 -50 Z","fill":"$hair","stroke":"$line","sw":1.6,"slot":"hair","option":"long"},{"bone":"head","z":0,"d":"M -45 -54 Q -48 -97 0 -98 Q 48 -97 45 -54 Q 46 -30 38 -18 L -38 -18 Q -46 -30 -45 -54 Z","fill":"$hair","stroke":"$line","sw":1.6,"slot":"hair","option":"twin"},{"bone":"head","z":0.1,"d":"M -46 -24 Q -44 -6 -38 -4 Q -36 -14 -40 -26 Z","fill":"$hairTip","slot":"hair","option":"bob"},{"bone":"head","z":0.1,"d":"M 46 -24 Q 44 -6 38 -4 Q 36 -14 40 -26 Z","fill":"$hairTip","slot":"hair","option":"bob"},{"bone":"head","z":0.1,"d":"M -52 8 Q -50 26 -46 34 Q -40 30 -36 20 Q -44 18 -52 8 Z","fill":"$hairTip","slot":"hair","option":"long"},{"bone":"head","z":0.1,"d":"M 52 8 Q 50 26 46 34 Q 40 30 36 20 Q 44 18 52 8 Z","fill":"$hairTip","slot":"hair","option":"long"},{"bone":"shinL","z":5,"d":"M -5.5 0 L -4.5 22 Q -4.5 26.5 0 26.5 Q 4.5 26.5 4.5 22 L 5.5 0 Q 5.5 -5.5 0 -5.5 Q -5.5 -5.5 -5.5 0 Z","fill":"$skin","stroke":"$line","sw":1.6},{"bone":"shinR","z":5,"d":"M 5.5 0 L 4.5 22 Q 4.5 26.5 -0 26.5 Q -4.5 26.5 -4.5 22 L -5.5 0 Q -5.5 -5.5 -0 -5.5 Q 5.5 -5.5 5.5 0 Z","fill":"$skin","stroke":"$line","sw":1.6},{"bone":"footL","z":6,"d":"M -6 -2 Q -9 6 -2 8 Q 6 9 8 5 Q 8 -1 4 -3 Q -1 -4 -6 -2 Z","fill":"$skin","stroke":"$line","sw":1.6,"slot":"shoes","option":"none"},{"bone":"footR","z":6,"d":"M 6 -2 Q 9 6 2 8 Q -6 9 -8 5 Q -8 -1 -4 -3 Q 1 -4 6 -2 Z","fill":"$skin","stroke":"$line","sw":1.6,"slot":"shoes","option":"none"},{"bone":"shinL","z":7,"d":"M -6.5 -2 L -6.5 20 Q -6.5 26.5 0 26.5 Q 6.5 26.5 6.5 20 L 6.5 -2 Q 6.5 -8.5 0 -8.5 Q -6.5 -8.5 -6.5 -2 Z","fill":"$pants","stroke":"$line","sw":1.6,"slot":"bottom","option":"pants"},{"bone":"shinR","z":7,"d":"M 6.5 -2 L 6.5 20 Q 6.5 26.5 -0 26.5 Q -6.5 26.5 -6.5 20 L -6.5 -2 Q -6.5 -8.5 -0 -8.5 Q 6.5 -8.5 6.5 -2 Z","fill":"$pants","stroke":"$line","sw":1.6,"slot":"bottom","option":"pants"},{"bone":"footL","z":7,"d":"M -8 -6 L 8 -6 L 9 4 Q 12 6 11 10 L -9 10 Q -12 8 -10 4 Z","fill":"$shoe","stroke":"$line","sw":1.6,"slot":"shoes","option":"sneakers"},{"bone":"footR","z":7,"d":"M 8 -6 L -8 -6 L -9 4 Q -12 6 -11 10 L 9 10 Q 12 8 10 4 Z","fill":"$shoe","stroke":"$line","sw":1.6,"slot":"shoes","option":"sneakers"},{"bone":"shinL","z":7,"d":"M -7 10 L 7 10 L 8 25 L -8 25 Z","fill":"$sock","stroke":"$line","sw":1.6,"slot":"shoes","option":"sneakers"},{"bone":"shinR","z":7,"d":"M 7 10 L -7 10 L -8 25 L 8 25 Z","fill":"$sock","stroke":"$line","sw":1.6,"slot":"shoes","option":"sneakers"},{"bone":"shinL","z":7,"d":"M -8 6 L 8 6 L 9 25 L -9 25 Z","fill":"$boot","stroke":"$line","sw":1.6,"slot":"shoes","option":"boots"},{"bone":"shinR","z":7,"d":"M 8 6 L -8 6 L -9 25 L 9 25 Z","fill":"$boot","stroke":"$line","sw":1.6,"slot":"shoes","option":"boots"},{"bone":"footL","z":7,"d":"M -8 -6 L 8 -6 L 9 4 Q 12 6 11 10 L -9 10 Q -12 8 -10 4 Z","fill":"$boot","stroke":"$line","sw":1.6,"slot":"shoes","option":"boots"},{"bone":"footR","z":7,"d":"M 8 -6 L -8 -6 L -9 4 Q -12 6 -11 10 L 9 10 Q 12 8 10 4 Z","fill":"$boot","stroke":"$line","sw":1.6,"slot":"shoes","option":"boots"},{"bone":"footL","z":7.1,"d":"M -10 7 L 11 7 L 11 11 Q 0 13 -10 11 Z","fill":"$sole","stroke":"$line","sw":1.6,"slot":"shoes","option":"sneakers"},{"bone":"footR","z":7.1,"d":"M 10 7 L -11 7 L -11 11 Q -0 13 10 11 Z","fill":"$sole","stroke":"$line","sw":1.6,"slot":"shoes","option":"sneakers"},{"bone":"shinL","z":7.1,"d":"M -8 9 L 8 9 L 8 12 L -8 12 Z","fill":"$trim","slot":"shoes","option":"boots"},{"bone":"shinR","z":7.1,"d":"M 8 9 L -8 9 L -8 12 L 8 12 Z","fill":"$trim","slot":"shoes","option":"boots"},{"bone":"footL","z":7.1,"d":"M -10 7 L 11 7 L 11 11 Q 0 13 -10 11 Z","fill":"$coatDark","stroke":"$line","sw":1.6,"slot":"shoes","option":"boots"},{"bone":"footR","z":7.1,"d":"M 10 7 L -11 7 L -11 11 Q -0 13 10 11 Z","fill":"$coatDark","stroke":"$line","sw":1.6,"slot":"shoes","option":"boots"},{"bone":"footL","z":7.2,"d":"M -8 -2 L 8 -2 L 8 1 L -8 1 Z","fill":"$trim","slot":"shoes","option":"sneakers"},{"bone":"footR","z":7.2,"d":"M 8 -2 L -8 -2 L -8 1 L 8 1 Z","fill":"$trim","slot":"shoes","option":"sneakers"},{"bone":"footL","z":7.3,"ellipse":[0,4,2.6,2.2],"fill":"$sole","slot":"shoes","option":"sneakers"},{"bone":"footR","z":7.3,"ellipse":[0,4,2.6,2.2],"fill":"$sole","slot":"shoes","option":"sneakers"},{"bone":"thighL","z":8,"d":"M -6.5 0 L -5.5 26 Q -5.5 31.5 0 31.5 Q 5.5 31.5 5.5 26 L 6.5 0 Q 6.5 -6.5 0 -6.5 Q -6.5 -6.5 -6.5 0 Z","fill":"$skin","stroke":"$line","sw":1.6},{"bone":"thighR","z":8,"d":"M 6.5 0 L 5.5 26 Q 5.5 31.5 -0 31.5 Q -5.5 31.5 -5.5 26 L -6.5 0 Q -6.5 -6.5 -0 -6.5 Q 6.5 -6.5 6.5 0 Z","fill":"$skin","stroke":"$line","sw":1.6},{"bone":"thighL","z":9,"d":"M -8.0 -2 L -8.0 17 Q -8.0 25.0 0 25.0 Q 8.0 25.0 8.0 17 L 8.0 -2 Q 8.0 -10.0 0 -10.0 Q -8.0 -10.0 -8.0 -2 Z","fill":"$shorts","stroke":"$line","sw":1.6,"slot":"bottom","option":"shorts"},{"bone":"thighR","z":9,"d":"M 8 -2 L 8 17 Q 8 25 -0 25 Q -8 25 -8 17 L -8 -2 Q -8 -10 -0 -10 Q 8 -10 8 -2 Z","fill":"$shorts","stroke":"$line","sw":1.6,"slot":"bottom","option":"shorts"},{"bone":"thighL","z":9,"d":"M -7.5 -2 L -7.0 26 Q -7.0 33.0 0 33.0 Q 7.0 33.0 7.0 26 L 7.5 -2 Q 7.5 -9.5 0 -9.5 Q -7.5 -9.5 -7.5 -2 Z","fill":"$pants","stroke":"$line","sw":1.6,"slot":"bottom","option":"pants"},{"bone":"thighR","z":9,"d":"M 7.5 -2 L 7 26 Q 7 33 -0 33 Q -7 33 -7 26 L -7.5 -2 Q -7.5 -9.5 -0 -9.5 Q 7.5 -9.5 7.5 -2 Z","fill":"$pants","stroke":"$line","sw":1.6,"slot":"bottom","option":"pants"},{"bone":"thighL","z":9.1,"d":"M -8.5 14 L 8.5 14 L 8.5 19 L -8.5 19 Z","fill":"$shortsCuff","stroke":"$line","sw":1.6,"slot":"bottom","option":"shorts"},{"bone":"thighR","z":9.1,"d":"M 8.5 14 L -8.5 14 L -8.5 19 L 8.5 19 Z","fill":"$shortsCuff","stroke":"$line","sw":1.6,"slot":"bottom","option":"shorts"},{"bone":"neck","z":11,"d":"M -5 -6 L 5 -6 L 5 6 L -5 6 Z","fill":"$skin","stroke":"$line","sw":1.6},{"bone":"neck","z":11.5,"d":"M -5 -2 Q 0 2 5 -2 L 5 2 Q 0 5 -5 2 Z","fill":"$skinShade"},{"bone":"torso","z":12,"d":"M -14 -47 Q 0 -51 14 -47 Q 18 -40 17 -30 Q 15 -19 15 -10 L 16 4 L -16 4 L -15 -10 Q -15 -19 -17 -30 Q -18 -40 -14 -47 Z","fill":"$skin","stroke":"$line","sw":1.6},{"bone":"torso","z":13,"d":"M -12 -47 L -8 -47 Q -6 -37 0 -36 Q 6 -37 8 -47 L 12 -47 Q 13 -38 16 -31 Q 15 -19 15 -7 L -15 -7 Q -15 -19 -16 -31 Q -13 -38 -12 -47 Z","fill":"$tank","stroke":"$line","sw":1.6},{"bone":"torso","z":13.2,"d":"M -10 -30 L -10 -9","stroke":"$tankRib","sw":0.7},{"bone":"torso","z":13.2,"d":"M -5 -30 L -5 -9","stroke":"$tankRib","sw":0.7},{"bone":"torso","z":13.2,"d":"M 0 -30 L 0 -9","stroke":"$tankRib","sw":0.7},{"bone":"torso","z":13.2,"d":"M 5 -30 L 5 -9","stroke":"$tankRib","sw":0.7},{"bone":"torso","z":13.2,"d":"M 10 -30 L 10 -9","stroke":"$tankRib","sw":0.7},{"bone":"torso","z":13.3,"d":"M -8 -47 Q -6 -37 0 -36 Q 6 -37 8 -47","stroke":"$tankRib","sw":1.4},{"bone":"root","z":14,"d":"M -16 -9 L 16 -9 L 17 7 Q 17 13 12 14 L 3 14 Q 0 10 -3 14 L -12 14 Q -17 13 -17 7 Z","fill":"$briefs","stroke":"$line","sw":1.6},{"bone":"root","z":14.2,"d":"M -16 -9 L 16 -9 L 16 -5 L -16 -5 Z","fill":"$briefsBand","stroke":"$line","sw":1.2},{"bone":"root","z":14.3,"d":"M 0 -5 L 0 9","stroke":"$briefsSeam","sw":0.9},{"bone":"root","z":16,"d":"M -17 -10 L 17 -10 Q 26 8 28 22 Q 21 26 14 22 Q 7 27 0 23 Q -7 27 -14 22 Q -21 26 -28 22 Q -26 8 -17 -10 Z","fill":"$skirt","stroke":"$line","sw":1.6,"slot":"bottom","option":"skirt"},{"bone":"root","z":16,"d":"M -17 -10 L 17 -10 L 19 8 L 2 8 L 0 2 L -2 8 L -19 8 Z","fill":"$shorts","stroke":"$line","sw":1.6,"slot":"bottom","option":"shorts"},{"bone":"root","z":16,"d":"M -17 -10 L 17 -10 L 18 6 L -18 6 Z","fill":"$pants","stroke":"$line","sw":1.6,"slot":"bottom","option":"pants"},{"bone":"root","z":16.1,"d":"M -28 22 Q -21 26 -14 22 Q -7 27 0 23 Q 7 27 14 22 Q 21 26 28 22","stroke":"$trim","sw":1.6,"slot":"bottom","option":"skirt"},{"bone":"root","z":16.1,"d":"M -17 -10 L 17 -10 L 17 -6 L -17 -6 Z","fill":"$coatDark","slot":"bottom","option":"shorts"},{"bone":"torso","z":18,"d":"M -17 -48 Q 0 -44 17 -48 Q 23 -24 30 12 Q 20 19 8 13 L 3 -26 L -3 -26 L -8 13 Q -20 19 -30 12 Q -23 -24 -17 -48 Z","fill":"$coat","stroke":"$line","sw":1.6,"slot":"top","option":"coat"},{"bone":"torso","z":18,"d":"M -15 -48 Q 0 -44 15 -48 Q 18 -38 17 -30 Q 15 -18 16 -4 L -16 -4 Q -15 -18 -17 -30 Q -18 -38 -15 -48 Z","fill":"$tee","stroke":"$line","sw":1.6,"slot":"top","option":"tee"},{"bone":"torso","z":18,"d":"M -16 -48 Q 0 -44 16 -48 Q 20 -36 19 -24 Q 18 -10 18 2 L -18 2 Q -18 -10 -19 -24 Q -20 -36 -16 -48 Z","fill":"$hoodie","stroke":"$line","sw":1.6,"slot":"top","option":"hoodie"},{"bone":"torso","z":18.1,"d":"M -3 -26 L -8 13 Q -14 16 -20 15 Q -12 -6 -3 -26 Z","fill":"$coatLining","opacity":0.85,"slot":"top","option":"coat"},{"bone":"torso","z":18.1,"d":"M 3 -26 L 8 13 Q 14 16 20 15 Q 12 -6 3 -26 Z","fill":"$coatLining","opacity":0.85,"slot":"top","option":"coat"},{"bone":"torso","z":18.1,"d":"M -7 -47 Q 0 -40 7 -47","stroke":"$line","sw":1.2,"slot":"top","option":"tee"},{"bone":"torso","z":18.1,"d":"M -10 -14 L 10 -14 L 12 -2 L -12 -2 Z","fill":"$hoodieDark","stroke":"$line","sw":1.2,"slot":"top","option":"hoodie"},{"bone":"torso","z":18.2,"d":"M -17 -48 Q 0 -44 17 -48 Q 23 -24 30 12 Q 20 19 8 13 L 3 -26 L -3 -26 L -8 13 Q -20 19 -30 12 Q -23 -24 -17 -48 Z","stroke":"$trim","sw":2.2,"slot":"top","option":"coat"},{"bone":"torso","z":18.2,"d":"M -6 -28 Q -6 -33 -2 -33 Q 0 -33 0 -30 Q 0 -33 2 -33 Q 6 -33 6 -28 Q 4 -24 0 -21 Q -4 -24 -6 -28 Z","fill":"$accent","slot":"top","option":"tee"},{"bone":"torso","z":18.2,"d":"M -4 -46 L -4 -32 M 4 -46 L 4 -32","stroke":"#FFFFFF","sw":1.4,"slot":"top","option":"hoodie"},{"bone":"torso","z":18.3,"d":"M -14 -46 Q 0 -40 14 -46 L 12 -50 Q 0 -45 -12 -50 Z","fill":"$coatDark","stroke":"$line","sw":1.6,"slot":"top","option":"coat"},{"bone":"torso","z":19,"d":"M -9 -47 Q 0 -36 9 -47","stroke":"$gold","sw":1.4,"slot":"neck","option":"heart"},{"bone":"torso","z":19.1,"d":"M -6 -36 Q -6 -42 -2 -42 Q 0 -42 0 -39 Q 0 -42 2 -42 Q 6 -42 6 -36 Q 4 -31 0 -28 Q -4 -31 -6 -36 Z","fill":"$gem","stroke":"$gold","sw":1.4,"slot":"neck","option":"heart"},{"bone":"torso","z":19.2,"ellipse":[-2.5,-38,1.4,1.4],"fill":"#FFFFFF","slot":"neck","option":"heart"},{"bone":"forearmL","z":20,"d":"M -4.5 0 L -4.0 19 Q -4.0 23.0 0 23.0 Q 4.0 23.0 4.0 19 L 4.5 0 Q 4.5 -4.5 0 -4.5 Q -4.5 -4.5 -4.5 0 Z","fill":"$skin","stroke":"$line","sw":1.6},{"bone":"forearmR","z":20,"d":"M 4.5 0 L 4 19 Q 4 23 -0 23 Q -4 23 -4 19 L -4.5 0 Q -4.5 -4.5 -0 -4.5 Q 4.5 -4.5 4.5 0 Z","fill":"$skin","stroke":"$line","sw":1.6},{"bone":"forearmL","z":21,"d":"M -7.0 -1 L -7.5 15 Q -7.5 22.5 0 22.5 Q 7.5 22.5 7.5 15 L 7.0 -1 Q 7.0 -8.0 0 -8.0 Q -7.0 -8.0 -7.0 -1 Z","fill":"$coat","stroke":"$line","sw":1.6,"slot":"top","option":"coat"},{"bone":"forearmR","z":21,"d":"M 7 -1 L 7.5 15 Q 7.5 22.5 -0 22.5 Q -7.5 22.5 -7.5 15 L -7 -1 Q -7 -8 -0 -8 Q 7 -8 7 -1 Z","fill":"$coat","stroke":"$line","sw":1.6,"slot":"top","option":"coat"},{"bone":"forearmL","z":21,"d":"M -6.5 -1 L -6.0 16 Q -6.0 22.0 0 22.0 Q 6.0 22.0 6.0 16 L 6.5 -1 Q 6.5 -7.5 0 -7.5 Q -6.5 -7.5 -6.5 -1 Z","fill":"$hoodie","stroke":"$line","sw":1.6,"slot":"top","option":"hoodie"},{"bone":"forearmR","z":21,"d":"M 6.5 -1 L 6 16 Q 6 22 -0 22 Q -6 22 -6 16 L -6.5 -1 Q -6.5 -7.5 -0 -7.5 Q 6.5 -7.5 6.5 -1 Z","fill":"$hoodie","stroke":"$line","sw":1.6,"slot":"top","option":"hoodie"},{"bone":"forearmL","z":21.1,"d":"M -8 12 L 8 12 L 8 19 Q 0 21 -8 19 Z","fill":"$coatDark","stroke":"$line","sw":1.6,"slot":"top","option":"coat"},{"bone":"forearmR","z":21.1,"d":"M 8 12 L -8 12 L -8 19 Q -0 21 8 19 Z","fill":"$coatDark","stroke":"$line","sw":1.6,"slot":"top","option":"coat"},{"bone":"forearmL","z":21.1,"d":"M -6 15 L 6 15 L 6 19 Q 0 20 -6 19 Z","fill":"$hoodieDark","stroke":"$line","sw":1.6,"slot":"top","option":"hoodie"},{"bone":"forearmR","z":21.1,"d":"M 6 15 L -6 15 L -6 19 Q -0 20 6 19 Z","fill":"$hoodieDark","stroke":"$line","sw":1.6,"slot":"top","option":"hoodie"},{"bone":"forearmL","z":21.2,"d":"M -8 12 L 8 12","stroke":"$trim","sw":1.6,"slot":"top","option":"coat"},{"bone":"forearmR","z":21.2,"d":"M 8 12 L -8 12","stroke":"$trim","sw":1.6,"slot":"top","option":"coat"},{"bone":"handL","z":22,"d":"M -6 0 Q -8 8 -3 11 Q 2 13 6 9 Q 8 4 6 0 Q 0 -3 -6 0 Z","fill":"$skin","stroke":"$line","sw":1.6},{"bone":"handR","z":22,"d":"M 6 0 Q 8 8 3 11 Q -2 13 -6 9 Q -8 4 -6 0 Q -0 -3 6 0 Z","fill":"$skin","stroke":"$line","sw":1.6},{"bone":"handL","z":22.5,"d":"M 5 1 Q 10 2 9 6 Q 8 8 6 6 Z","fill":"$skin","stroke":"$line","sw":1.6},{"bone":"handR","z":22.5,"d":"M -5 1 Q -10 2 -9 6 Q -8 8 -6 6 Z","fill":"$skin","stroke":"$line","sw":1.6},{"bone":"upperArmL","z":23,"d":"M -5.0 0 L -4.5 21 Q -4.5 25.5 0 25.5 Q 4.5 25.5 4.5 21 L 5.0 0 Q 5.0 -5.0 0 -5.0 Q -5.0 -5.0 -5.0 0 Z","fill":"$skin","stroke":"$line","sw":1.6},{"bone":"upperArmR","z":23,"d":"M 5 0 L 4.5 21 Q 4.5 25.5 -0 25.5 Q -4.5 25.5 -4.5 21 L -5 0 Q -5 -5 -0 -5 Q 5 -5 5 0 Z","fill":"$skin","stroke":"$line","sw":1.6},{"bone":"upperArmL","z":24,"d":"M -7.5 -1 L -7.0 21 Q -7.0 28.0 0 28.0 Q 7.0 28.0 7.0 21 L 7.5 -1 Q 7.5 -8.5 0 -8.5 Q -7.5 -8.5 -7.5 -1 Z","fill":"$coat","stroke":"$line","sw":1.6,"slot":"top","option":"coat"},{"bone":"upperArmR","z":24,"d":"M 7.5 -1 L 7 21 Q 7 28 -0 28 Q -7 28 -7 21 L -7.5 -1 Q -7.5 -8.5 -0 -8.5 Q 7.5 -8.5 7.5 -1 Z","fill":"$coat","stroke":"$line","sw":1.6,"slot":"top","option":"coat"},{"bone":"upperArmL","z":24,"d":"M -7.0 -1 L -6.5 10 Q -6.5 16.5 0 16.5 Q 6.5 16.5 6.5 10 L 7.0 -1 Q 7.0 -8.0 0 -8.0 Q -7.0 -8.0 -7.0 -1 Z","fill":"$tee","stroke":"$line","sw":1.6,"slot":"top","option":"tee"},{"bone":"upperArmR","z":24,"d":"M 7 -1 L 6.5 10 Q 6.5 16.5 -0 16.5 Q -6.5 16.5 -6.5 10 L -7 -1 Q -7 -8 -0 -8 Q 7 -8 7 -1 Z","fill":"$tee","stroke":"$line","sw":1.6,"slot":"top","option":"tee"},{"bone":"upperArmL","z":24,"d":"M -7.0 -1 L -6.5 21 Q -6.5 27.5 0 27.5 Q 6.5 27.5 6.5 21 L 7.0 -1 Q 7.0 -8.0 0 -8.0 Q -7.0 -8.0 -7.0 -1 Z","fill":"$hoodie","stroke":"$line","sw":1.6,"slot":"top","option":"hoodie"},{"bone":"upperArmR","z":24,"d":"M 7 -1 L 6.5 21 Q 6.5 27.5 -0 27.5 Q -6.5 27.5 -6.5 21 L -7 -1 Q -7 -8 -0 -8 Q 7 -8 7 -1 Z","fill":"$hoodie","stroke":"$line","sw":1.6,"slot":"top","option":"hoodie"},{"bone":"upperArmL","z":24.1,"d":"M -7 9 L 7 9 L 7 13 L -7 13 Z","fill":"$coatDark","slot":"top","option":"coat"},{"bone":"upperArmR","z":24.1,"d":"M 7 9 L -7 9 L -7 13 L 7 13 Z","fill":"$coatDark","slot":"top","option":"coat"},{"bone":"head","z":30,"d":"M -40 -50 Q -40 -86 0 -86 Q 40 -86 40 -50 Q 40 -22 22 -8 Q 10 0 0 0 Q -10 0 -22 -8 Q -40 -22 -40 -50 Z","fill":"$skin","stroke":"$line","sw":1.6},{"bone":"head","z":31,"ellipse":[-25,-22,6,3.4],"fill":"$blush","opacity":0.55},{"bone":"head","z":31,"ellipse":[25,-22,6,3.4],"fill":"$blush","opacity":0.55},{"bone":"head","z":32,"ellipse":[-16,-35,10,12],"fill":"#FFFFFF","stroke":"$line","sw":1.2,"eyes":"open"},{"bone":"head","z":32,"ellipse":[16,-35,10,12],"fill":"#FFFFFF","stroke":"$line","sw":1.2,"eyes":"open"},{"bone":"head","z":32,"d":"M -26 -34 Q -16 -43 -6 -34","stroke":"$line","sw":2.8,"eyes":"closed"},{"bone":"head","z":32,"d":"M 26 -34 Q 16 -43 6 -34","stroke":"$line","sw":2.8,"eyes":"closed"},{"bone":"head","z":32.1,"ellipse":[-16,-34,8.5,10.5],"fill":"$eye","eyes":"open"},{"bone":"head","z":32.1,"ellipse":[16,-34,8.5,10.5],"fill":"$eye","eyes":"open"},{"bone":"head","z":32.2,"ellipse":[-16,-36,4.6,6],"fill":"$eyeDeep","eyes":"open"},{"bone":"head","z":32.2,"ellipse":[16,-36,4.6,6],"fill":"$eyeDeep","eyes":"open"},{"bone":"head","z":32.3,"ellipse":[-16,-28.5,5.5,3.6],"fill":"$eyeGlow","opacity":0.9,"eyes":"open"},{"bone":"head","z":32.3,"ellipse":[16,-28.5,5.5,3.6],"fill":"$eyeGlow","opacity":0.9,"eyes":"open"},{"bone":"head","z":32.4,"ellipse":[-12.5,-39.5,3.2,3.8],"fill":"#FFFFFF","eyes":"open"},{"bone":"head","z":32.4,"ellipse":[12.5,-39.5,3.2,3.8],"fill":"#FFFFFF","eyes":"open"},{"bone":"head","z":32.5,"ellipse":[-19.5,-30,1.5,1.5],"fill":"#FFFFFF","eyes":"open"},{"bone":"head","z":32.5,"ellipse":[19.5,-30,1.5,1.5],"fill":"#FFFFFF","eyes":"open"},{"bone":"head","z":32.6,"d":"M -27 -38 Q -17 -55 -5 -41","stroke":"$line","sw":3.4,"eyes":"open"},{"bone":"head","z":32.6,"d":"M 27 -38 Q 17 -55 5 -41","stroke":"$line","sw":3.4,"eyes":"open"},{"bone":"head","z":32.7,"d":"M -27 -38 L -30 -35","stroke":"$line","sw":2.2,"eyes":"open"},{"bone":"head","z":32.7,"d":"M 27 -38 L 30 -35","stroke":"$line","sw":2.2,"eyes":"open"},{"bone":"head","z":33,"d":"M -5 -17 Q 0 -13 5 -17","stroke":"$line","sw":1.6,"mouth":"smile"},{"bone":"head","z":33,"d":"M -7 -18 L 7 -18 Q 6 -8 0 -8 Q -6 -8 -7 -18 Z","fill":"$mouth","stroke":"$line","sw":1.4,"mouth":"open"},{"bone":"head","z":33,"ellipse":[0,-14,3,3.6],"fill":"$mouth","stroke":"$line","sw":1.4,"mouth":"o"},{"bone":"head","z":33,"d":"M -4 -15 L 4 -15","stroke":"$line","sw":1.6,"mouth":"flat"},{"bone":"head","z":33.1,"d":"M -4 -11 Q 0 -14 4 -11 Q 3 -8.5 0 -8.5 Q -3 -8.5 -4 -11 Z","fill":"$tongue","mouth":"open"},{"bone":"head","z":35,"d":"M -44 -50 Q -46 -94 0 -95 Q 46 -94 44 -50 Q 39 -60 34 -46 Q 30 -63 20 -54 Q 14 -70 4 -51 Q -2 -70 -12 -53 Q -20 -66 -26 -47 Q -32 -62 -40 -43 Z","fill":"$hair","stroke":"$line","sw":1.6,"slot":"hair","option":"bob"},{"bone":"head","z":35,"d":"M -45 -46 Q -48 -95 0 -96 Q 48 -95 45 -46 Q 40 -56 36 -44 Q 32 -62 22 -52 Q 16 -68 6 -50 Q 0 -68 -10 -52 Q -18 -66 -24 -48 Q -30 -60 -36 -44 Q -40 -56 -45 -46 Z","fill":"$hair","stroke":"$line","sw":1.6,"slot":"hair","option":"short"},{"bone":"head","z":35,"d":"M -44 -50 Q -46 -94 0 -95 Q 46 -94 44 -50 Q 39 -60 34 -46 Q 30 -63 20 -54 Q 14 -70 4 -51 Q -2 -70 -12 -53 Q -20 -66 -26 -47 Q -32 -62 -40 -43 Z","fill":"$hair","stroke":"$line","sw":1.6,"slot":"hair","option":"long"},{"bone":"head","z":35,"d":"M -44 -50 Q -46 -94 0 -95 Q 46 -94 44 -50 Q 39 -60 34 -46 Q 30 -63 20 -54 Q 14 -70 4 -51 Q -2 -70 -12 -53 Q -20 -66 -26 -47 Q -32 -62 -40 -43 Z","fill":"$hair","stroke":"$line","sw":1.6,"slot":"hair","option":"twin"},{"bone":"head","z":35.1,"d":"M -20 -86 Q -8 -92 6 -88 Q -6 -84 -20 -78 Z","fill":"#FFFFFF","opacity":0.55,"slot":"hair","option":"bob"},{"bone":"head","z":35.1,"d":"M -20 -86 Q -8 -92 6 -88 Q -6 -84 -20 -78 Z","fill":"#FFFFFF","opacity":0.55,"slot":"hair","option":"short"},{"bone":"head","z":35.1,"d":"M -20 -86 Q -8 -92 6 -88 Q -6 -84 -20 -78 Z","fill":"#FFFFFF","opacity":0.55,"slot":"hair","option":"long"},{"bone":"head","z":35.1,"d":"M -20 -86 Q -8 -92 6 -88 Q -6 -84 -20 -78 Z","fill":"#FFFFFF","opacity":0.55,"slot":"hair","option":"twin"},{"bone":"head","z":35.2,"d":"M -44 -52 Q -50 -28 -38 -10 Q -34 -26 -36 -46 Z","fill":"$hair","stroke":"$line","sw":1.6,"slot":"hair","option":"bob"},{"bone":"head","z":35.2,"d":"M 44 -52 Q 50 -28 38 -10 Q 34 -26 36 -46 Z","fill":"$hair","stroke":"$line","sw":1.6,"slot":"hair","option":"bob"},{"bone":"head","z":35.2,"d":"M -44 -48 Q -48 -36 -42 -26 Q -40 -36 -38 -44 Z","fill":"$hair","stroke":"$line","sw":1.6,"slot":"hair","option":"short"},{"bone":"head","z":35.2,"d":"M 44 -48 Q 48 -36 42 -26 Q 40 -36 38 -44 Z","fill":"$hair","stroke":"$line","sw":1.6,"slot":"hair","option":"short"},{"bone":"head","z":35.2,"d":"M -44 -52 Q -50 -28 -38 -10 Q -34 -26 -36 -46 Z","fill":"$hair","stroke":"$line","sw":1.6,"slot":"hair","option":"long"},{"bone":"head","z":35.2,"d":"M 44 -52 Q 50 -28 38 -10 Q 34 -26 36 -46 Z","fill":"$hair","stroke":"$line","sw":1.6,"slot":"hair","option":"long"},{"bone":"head","z":35.2,"d":"M -44 -52 Q -50 -28 -38 -10 Q -34 -26 -36 -46 Z","fill":"$hair","stroke":"$line","sw":1.6,"slot":"hair","option":"twin"},{"bone":"head","z":35.2,"d":"M 44 -52 Q 50 -28 38 -10 Q 34 -26 36 -46 Z","fill":"$hair","stroke":"$line","sw":1.6,"slot":"hair","option":"twin"},{"bone":"head","z":35.3,"d":"M -42 -20 Q -40 -8 -34 -6 Q -34 -14 -36 -22 Z","fill":"$hairTip","opacity":0.9,"slot":"hair","option":"bob"},{"bone":"head","z":35.3,"d":"M 42 -20 Q 40 -8 34 -6 Q 34 -14 36 -22 Z","fill":"$hairTip","opacity":0.9,"slot":"hair","option":"bob"},{"bone":"head","z":35.3,"d":"M -42 -20 Q -40 -8 -34 -6 Q -34 -14 -36 -22 Z","fill":"$hairTip","opacity":0.9,"slot":"hair","option":"long"},{"bone":"head","z":35.3,"d":"M 42 -20 Q 40 -8 34 -6 Q 34 -14 36 -22 Z","fill":"$hairTip","opacity":0.9,"slot":"hair","option":"long"},{"bone":"head","z":35.4,"d":"M -2 -94 Q -10 -120 10 -124 Q 20 -116 8 -108 Q 14 -116 6 -116 Q -2 -112 4 -95 Z","fill":"$hair","stroke":"$line","sw":1.6,"slot":"hair","option":"bob"},{"bone":"head","z":35.4,"d":"M -2 -94 Q -10 -120 10 -124 Q 20 -116 8 -108 Q 14 -116 6 -116 Q -2 -112 4 -95 Z","fill":"$hair","stroke":"$line","sw":1.6,"slot":"hair","option":"short"},{"bone":"head","z":35.4,"d":"M -2 -94 Q -10 -120 10 -124 Q 20 -116 8 -108 Q 14 -116 6 -116 Q -2 -112 4 -95 Z","fill":"$hair","stroke":"$line","sw":1.6,"slot":"hair","option":"long"},{"bone":"head","z":35.4,"d":"M -2 -94 Q -10 -120 10 -124 Q 20 -116 8 -108 Q 14 -116 6 -116 Q -2 -112 4 -95 Z","fill":"$hair","stroke":"$line","sw":1.6,"slot":"hair","option":"twin"},{"bone":"head","z":35.5,"ellipse":[-42,-66,4,4],"fill":"$accent","stroke":"$line","sw":1.6,"slot":"hair","option":"twin"},{"bone":"head","z":35.5,"ellipse":[42,-66,4,4],"fill":"$accent","stroke":"$line","sw":1.6,"slot":"hair","option":"twin"},{"bone":"head","z":36,"d":"M -28 -42 L -4 -42 L -5 -30 Q -16 -24 -27 -30 Z","fill":"#1B1E26","stroke":"$line","sw":1.2,"opacity":0.92,"slot":"acc","option":"glasses"},{"bone":"head","z":36,"d":"M 28 -42 L 4 -42 L 5 -30 Q 16 -24 27 -30 Z","fill":"#1B1E26","stroke":"$line","sw":1.2,"opacity":0.92,"slot":"acc","option":"glasses"},{"bone":"head","z":36.1,"d":"M -4 -40 L 4 -40","stroke":"#1B1E26","sw":2,"slot":"acc","option":"glasses"},{"bone":"head","z":38,"d":"M -54 -50 Q -58 -112 0 -114 Q 58 -112 54 -50 Q 48 -56 44 -66 Q 30 -94 0 -94 Q -30 -94 -44 -66 Q -48 -56 -54 -50 Z","fill":"$coat","stroke":"$line","sw":1.6,"slot":"acc","option":"hood"},{"bone":"head","z":38,"d":"M -44 -82 L 44 -82 Q 46 -76 40 -75 L -40 -75 Q -46 -76 -44 -82 Z","fill":"$hat","stroke":"$line","sw":1.6,"slot":"acc","option":"fedora"},{"bone":"head","z":38,"d":"M -22 -88 L -24 -110 L -12 -98 L 0 -116 L 12 -98 L 24 -110 L 22 -88 Z","fill":"$gold","stroke":"$line","sw":1.6,"slot":"acc","option":"crown"},{"bone":"head","z":38,"d":"M -42 -76 Q -44 -116 0 -116 Q 44 -116 42 -76 Z","fill":"$cap","stroke":"$line","sw":1.6,"slot":"acc","option":"cap"},{"bone":"head","z":38,"d":"M 30 -88 L 14 -100 L 14 -76 Z","fill":"$ribbon","stroke":"$line","sw":1.6,"slot":"acc","option":"ribbon"},{"bone":"head","z":38,"d":"M 30 -88 L 46 -100 L 46 -76 Z","fill":"$ribbon","stroke":"$line","sw":1.6,"slot":"acc","option":"ribbon"},{"bone":"head","z":38.1,"d":"M -54 -50 Q -48 -56 -44 -66 Q -30 -94 0 -94 Q 30 -94 44 -66 Q 48 -56 54 -50","stroke":"$trim","sw":2.4,"slot":"acc","option":"hood"},{"bone":"head","z":38.1,"d":"M -26 -82 L -24 -108 Q 0 -114 24 -108 L 26 -82 Z","fill":"$hat","stroke":"$line","sw":1.6,"slot":"acc","option":"fedora"},{"bone":"head","z":38.1,"ellipse":[0,-96,3,3],"fill":"$accent","slot":"acc","option":"crown"},{"bone":"head","z":38.1,"d":"M 20 -80 L 62 -80 Q 64 -72 56 -72 L 20 -74 Z","fill":"$cap","stroke":"$line","sw":1.6,"slot":"acc","option":"cap"},{"bone":"head","z":38.1,"ellipse":[30,-88,4,4],"fill":"$ribbonDark","stroke":"$line","sw":1.6,"slot":"acc","option":"ribbon"},{"bone":"head","z":38.2,"ellipse":[-42,-84,10,10],"fill":"$coatDark","stroke":"$line","sw":1.6,"slot":"acc","option":"hood"},{"bone":"head","z":38.2,"ellipse":[42,-84,10,10],"fill":"$coatDark","stroke":"$line","sw":1.6,"slot":"acc","option":"hood"},{"bone":"head","z":38.2,"d":"M -25 -90 L 25 -90 L 26 -82 L -26 -82 Z","fill":"$accent","slot":"acc","option":"fedora"},{"bone":"head","z":38.2,"ellipse":[0,-116,4,2.5],"fill":"$cap","stroke":"$line","sw":1.6,"slot":"acc","option":"cap"},{"bone":"head","z":38.3,"ellipse":[-42,-84,6.5,6.5],"fill":"$lamp","stroke":"$trim","sw":1.4,"slot":"acc","option":"hood"},{"bone":"head","z":38.3,"ellipse":[42,-84,6.5,6.5],"fill":"$lamp","stroke":"$trim","sw":1.4,"slot":"acc","option":"hood"},{"bone":"head","z":38.4,"ellipse":[-44,-86,2.2,2.2],"fill":"#FFFFFF","slot":"acc","option":"hood"},{"bone":"head","z":38.4,"ellipse":[44,-86,2.2,2.2],"fill":"#FFFFFF","slot":"acc","option":"hood"}],"slots":{"hair":[["bob","보브"],["short","숏컷"],["long","롱"],["twin","트윈테일"]],"top":[["none","메리야스"],["coat","후드 코트"],["tee","반팔 티"],["hoodie","후드티"]],"bottom":[["none","빤스"],["skirt","스커트"],["shorts","반바지"],["pants","긴바지"]],"shoes":[["none","맨발"],["sneakers","스니커즈"],["boots","부츠"]],"acc":[["none","없음"],["hood","라이트 후드"],["fedora","중절모"],["crown","왕관"],["cap","캡모자"],["ribbon","리본"],["glasses","선글라스"]],"neck":[["none","없음"],["heart","하트 코어"]]},"hairColors":[["silver","실버민트","#EEF2F3","#9FE6DC"],["pink","핑크","#FFC6D9","#FF8FB6"],["brown","브라운","#9A6A4B","#C99470"],["black","블랙","#2C2F3A","#4D6BA8"],["blue","블루","#8EC5FF","#4C8BF5"]],"palette":{"line":"#3A2F3D","skin":"#FFE6D6","skinShade":"#F3C6B1","blush":"#FF9BA8","eye":"#27A6B8","eyeDeep":"#123D57","eyeGlow":"#F7D36A","mouth":"#B8475A","tongue":"#FF8C98","hair":"#EEF2F3","hairTip":"#9FE6DC","accent":"#38C6E0","tank":"#FBFBF7","tankRib":"#D9DBD6","briefs":"#BFE3F7","briefsBand":"#FFFFFF","briefsSeam":"#8DBAD3","coat":"#F6F0E2","coatDark":"#1F2338","coatLining":"#53C9D6","trim":"#D7A83A","tee":"#8ED9D2","hoodie":"#3C4A78","hoodieDark":"#2A3456","skirt":"#1F2338","shorts":"#24262E","shortsCuff":"#3A3D49","pants":"#3F4E73","shoe":"#F6F0E2","sole":"#5FE3EA","sock":"#1F2338","boot":"#2A2C36","hat":"#20242C","gold":"#F2C14E","cap":"#1F86C7","ribbon":"#FF6C9D","ribbonDark":"#D93C6B","lamp":"#FFD45C","gem":"#4CC9F0"},"presets":[{"id":"base","label":"기본(속옷)","look":{"hair":"bob","hairColor":"silver","top":"none","bottom":"none","shoes":"none","acc":"none","neck":"none"}},{"id":"lumi_cute","label":"루미 큐트","look":{"hair":"bob","hairColor":"silver","top":"coat","bottom":"skirt","shoes":"sneakers","acc":"hood","neck":"heart"}},{"id":"luon_sporty","label":"루온 스포티","look":{"hair":"short","hairColor":"silver","top":"coat","bottom":"shorts","shoes":"sneakers","acc":"hood","neck":"heart"}},{"id":"lumi_chic","label":"루미 시크","look":{"hair":"long","hairColor":"silver","top":"coat","bottom":"pants","shoes":"boots","acc":"hood","neck":"heart"}}],"poses":{"idle":{},"welcome":{"upperArmL":62,"forearmL":22,"upperArmR":62,"forearmR":22,"head":-4},"wave":{"upperArmR":150,"forearmR":-40,"head":5},"cheer":{"upperArmL":155,"forearmL":-20,"upperArmR":155,"forearmR":-20},"point":{"upperArmR":95,"forearmR":0,"upperArmL":15,"forearmL":10,"head":6},"think":{"upperArmR":20,"forearmR":150,"head":-8,"upperArmL":22,"forearmL":30}},"anims":{"breathe":{"head":[2,4,0],"upperArmL":[2,4,0.25],"upperArmR":[2,4,0.25],"_bobY":[1.0,4,0]},"wave":{"forearmR":[22,0.9,0],"head":[3,1.8,0]},"talk":{"head":[3,1.2,0],"forearmL":[8,1.2,0.5]}}};
+
+const BONE = Object.fromEntries(RIG.bones.map(b => [b.name, b]));
+const JOINT_LABEL = { torso: "몸통", neck: "목", head: "머리", upperArmL: "왼 어깨", forearmL: "왼 팔꿈치", handL: "왼 손목",
+  upperArmR: "오른 어깨", forearmR: "오른 팔꿈치", handR: "오른 손목", thighL: "왼 골반", shinL: "왼 무릎", footL: "왼 발목",
+  thighR: "오른 골반", shinR: "오른 무릎", footR: "오른 발목" };
+const TIP = { torso: [0, -48], neck: [0, -4], head: [0, -60], upperArmL: [0, 21], forearmL: [0, 19], handL: [0, 9],
+  upperArmR: [0, 21], forearmR: [0, 19], handR: [0, 9], thighL: [0, 26], shinL: [0, 24], footL: [0, 8],
+  thighR: [0, 26], shinR: [0, 24], footR: [0, 8] };
+const SLOT_LABEL = { hair: "헤어", top: "상의", bottom: "하의", shoes: "신발", acc: "장식", neck: "목걸이" };
+const MOODS = [["CALM", "평온"], ["TALKING", "말하기"], ["HAPPY", "기쁨"], ["LISTENING", "듣기"], ["FOCUS", "집중"]];
+const POSE_LABEL = { idle: "기본 서기", welcome: "환영", wave: "손 흔들기", cheer: "만세", point: "가리키기", think: "생각" };
+const ANIM_LABEL = { none: "정지", breathe: "숨쉬기", wave: "손 흔들기", talk: "말하기" };
+
+/* ---------- 렌더러 (앱의 LumiRig.kt 와 같은 규칙) ---------- */
+function expression(mood, t) {
+  const blink = (t % 3.6) > 3.45;
+  switch (mood) {
+    case "HAPPY": return { eyes: "closed", mouth: "open" };
+    case "TALKING": return { eyes: blink ? "closed" : "open", mouth: Math.floor(t * 6) % 2 ? "open" : "smile" };
+    case "LISTENING": return { eyes: blink ? "closed" : "open", mouth: "o" };
+    case "FOCUS": return { eyes: "open", mouth: "flat" };
+    default: return { eyes: blink ? "closed" : "open", mouth: "smile" };
+  }
+}
+function color(ref, look) {
+  if (!ref || ref[0] !== "$") return ref;
+  const k = ref.slice(1);
+  const hc = RIG.hairColors.find(h => h[0] === look.hairColor);
+  if (hc && k === "hair") return hc[2];
+  if (hc && k === "hairTip") return hc[3];
+  return RIG.palette[k] || "#FF00FF";
+}
+function visible(p, look, ex) {
+  if (p.slot && (look[p.slot] || "none") !== p.option) return false;
+  if (p.eyes && p.eyes !== ex.eyes) return false;
+  if (p.mouth && p.mouth !== ex.mouth) return false;
+  return true;
+}
+function solve(pose, anim, t) {
+  const out = {};
+  let bob = 0;
+  if (anim) for (const [k, [amp, per, ph]] of Object.entries(anim)) {
+    if (k === "_bobY") bob = amp * Math.sin((t / per + ph) * 2 * Math.PI);
+  }
+  for (const b of RIG.bones) {
+    let a = pose[b.name] ?? b.rot;
+    if (anim && anim[b.name]) { const [amp, per, ph] = anim[b.name]; a += amp * Math.sin((t / per + ph) * 2 * Math.PI); }
+    const local = b.mirror ? -a : a;
+    const parent = b.parent ? out[b.parent] : null;
+    const m = (parent ? parent.m : new DOMMatrix()).translate(b.x, b.y + (b.parent ? 0 : bob)).rotate(local);
+    out[b.name] = { m, world: (parent ? parent.world : 0) + local };
+  }
+  return out;
+}
+const pathCache = new Map();
+function p2d(d) { let p = pathCache.get(d); if (!p) { p = new Path2D(d); pathCache.set(d, p); } return p; }
+
+function draw(ctx, w, h, st, opts = {}) {
+  const t = opts.t ?? 0;
+  const anim = st.anim && st.anim !== "none" ? RIG.anims[st.anim] : null;
+  const bones = solve(st.pose, anim, t);
+  const ex = expression(st.mood, t);
+  const s = Math.min(w / RIG.canvas[0], h / RIG.canvas[1]);
+  const base = new DOMMatrix().translate((w - RIG.canvas[0] * s) / 2, (h - RIG.canvas[1] * s) / 2).scale(s);
+  ctx.setTransform(1, 0, 0, 1, 0, 0);
+  ctx.clearRect(0, 0, w, h);
+  ctx.lineJoin = "round"; ctx.lineCap = "round";
+  for (const p of RIG.parts) {
+    if (!visible(p, st.look, ex)) continue;
+    ctx.setTransform(base.multiply(bones[p.bone].m));
+    ctx.globalAlpha = p.opacity ?? 1;
+    let shape;
+    if (p.d) shape = p2d(p.d);
+    else { const [cx, cy, rx, ry] = p.ellipse; shape = new Path2D(); shape.ellipse(cx, cy, rx, ry, 0, 0, Math.PI * 2); }
+    if (p.fill) { ctx.fillStyle = color(p.fill, st.look); ctx.fill(shape); }
+    if (p.stroke) { ctx.strokeStyle = color(p.stroke, st.look); ctx.lineWidth = p.sw; ctx.stroke(shape); }
+  }
+  ctx.globalAlpha = 1;
+  if (opts.bones) drawBones(ctx, base, bones, opts.active);
+  return { base, bones };
+}
+function boneColor() { return getComputedStyle(document.documentElement).getPropertyValue("--bone").trim() || "#E0563B"; }
+function drawBones(ctx, base, bones, active) {
+  const c = boneColor();
+  ctx.setTransform(1, 0, 0, 1, 0, 0);
+  for (const name of Object.keys(TIP)) {
+    const m = base.multiply(bones[name].m);
+    const a = m.transformPoint(new DOMPoint(0, 0)), b = m.transformPoint(new DOMPoint(...TIP[name]));
+    ctx.strokeStyle = c; ctx.globalAlpha = name === active ? 1 : 0.55; ctx.lineWidth = name === active ? 5 : 3;
+    ctx.beginPath(); ctx.moveTo(a.x, a.y); ctx.lineTo(b.x, b.y); ctx.stroke();
+    ctx.fillStyle = c; ctx.beginPath(); ctx.arc(a.x, a.y, name === active ? 9 : 6, 0, Math.PI * 2); ctx.fill();
+    ctx.beginPath(); ctx.arc(b.x, b.y, 4, 0, Math.PI * 2); ctx.fill();
+  }
+  ctx.globalAlpha = 1;
+}
+
+/* ---------- 상태 ---------- */
+const presetLook = id => ({ ...RIG.presets.find(p => p.id === id).look });
+const state = { look: presetLook("base"), mood: "CALM", poseName: "welcome", pose: { ...RIG.poses.welcome }, anim: "breathe" };
+
+/* ---------- UI ---------- */
+const $ = id => document.getElementById(id);
+function chipRow(el, items, isOn, onPick) {
+  el.innerHTML = "";
+  for (const [val, label] of items) {
+    const b = document.createElement("button");
+    b.type = "button"; b.className = "chip"; b.textContent = label; b.id = el.id + "-" + val;
+    b.setAttribute("aria-pressed", isOn(val));
+    b.onclick = () => { onPick(val); renderUI(); };
+    el.appendChild(b);
+  }
+}
+function renderUI() {
+  chipRow($("presets"), RIG.presets.map(p => [p.id, p.label]),
+    id => JSON.stringify(presetLook(id)) === JSON.stringify(state.look), id => { state.look = presetLook(id); });
+  const slots = $("slots"); slots.innerHTML = "";
+  for (const [slot, opts] of Object.entries(RIG.slots)) {
+    const l = document.createElement("label"); l.textContent = SLOT_LABEL[slot] || slot; slots.appendChild(l);
+    const row = document.createElement("div"); row.className = "chips"; row.id = "slot-" + slot; slots.appendChild(row);
+    chipRow(row, opts, v => (state.look[slot] || "none") === v, v => { state.look[slot] = v; });
+  }
+  const hc = $("hairColors"); hc.innerHTML = "";
+  for (const [id, label, c1, c2] of RIG.hairColors) {
+    const b = document.createElement("button");
+    b.type = "button"; b.className = "swatch"; b.title = label; b.setAttribute("aria-label", label); b.id = "hair-" + id;
+    b.style.background = `linear-gradient(135deg, ${c1} 55%, ${c2} 55%)`;
+    b.setAttribute("aria-pressed", state.look.hairColor === id);
+    b.onclick = () => { state.look.hairColor = id; renderUI(); };
+    hc.appendChild(b);
+  }
+  chipRow($("moods"), MOODS, v => state.mood === v, v => { state.mood = v; });
+  chipRow($("poses"), Object.keys(RIG.poses).map(k => [k, POSE_LABEL[k] || k]), v => state.poseName === v,
+    v => { state.poseName = v; state.pose = { ...RIG.poses[v] }; });
+  chipRow($("anims"), [["none", ANIM_LABEL.none], ...Object.keys(RIG.anims).map(k => [k, ANIM_LABEL[k] || k])],
+    v => state.anim === v, v => { state.anim = v; });
+  renderJoints();
+}
+function renderJoints() {
+  const j = $("joints"); j.innerHTML = "";
+  for (const name of Object.keys(TIP)) {
+    const l = document.createElement("label"); l.htmlFor = "j-" + name; l.textContent = JOINT_LABEL[name];
+    if (name === activeBone) l.className = "on";
+    const r = document.createElement("input"); r.type = "range"; r.min = -180; r.max = 180; r.id = "j-" + name;
+    const v = document.createElement("span"); v.className = "v";
+    const cur = Math.round(state.pose[name] ?? BONE[name].rot);
+    r.value = cur; v.textContent = cur + "°";
+    r.oninput = () => { state.pose[name] = +r.value; state.poseName = ""; v.textContent = r.value + "°"; };
+    j.append(l, r, v);
+  }
+}
+$("resetPose").onclick = () => { state.pose = {}; state.poseName = "idle"; renderUI(); };
+
+/* ---------- 무대 + 관절 드래그 ---------- */
+const cv = $("stage"), ctx = cv.getContext("2d");
+let activeBone = null, last = null, t0 = performance.now();
+function canvasPoint(e) {
+  const r = cv.getBoundingClientRect();
+  return new DOMPoint((e.clientX - r.left) * cv.width / r.width, (e.clientY - r.top) * cv.height / r.height);
+}
+cv.addEventListener("pointerdown", e => {
+  if (!last) return;
+  const pt = canvasPoint(e);
+  let best = null, bd = 60;
+  for (const name of Object.keys(TIP)) {
+    const m = last.base.multiply(last.bones[name].m);
+    const tip = m.transformPoint(new DOMPoint(...TIP[name]));
+    const mid = m.transformPoint(new DOMPoint(TIP[name][0] * .6, TIP[name][1] * .6));
+    const d = Math.min(Math.hypot(tip.x - pt.x, tip.y - pt.y), Math.hypot(mid.x - pt.x, mid.y - pt.y));
+    if (d < bd) { bd = d; best = name; }
+  }
+  if (!best) return;
+  activeBone = best; cv.setPointerCapture(e.pointerId); cv.classList.add("drag");
+  if (state.anim !== "none") { state.anim = "none"; }
+  renderUI(); $("hudBone").textContent = JOINT_LABEL[best];
+});
+cv.addEventListener("pointermove", e => {
+  if (!activeBone || !cv.hasPointerCapture(e.pointerId)) return;
+  const b = BONE[activeBone];
+  const pt = canvasPoint(e);
+  const m = last.base.multiply(last.bones[activeBone].m);
+  const o = m.transformPoint(new DOMPoint(0, 0));
+  const parentWorld = b.parent ? last.bones[b.parent].world : 0;
+  const [tx, ty] = TIP[activeBone];
+  const want = Math.atan2(pt.y - o.y, pt.x - o.x) - Math.atan2(ty, tx);
+  let local = want * 180 / Math.PI - parentWorld;
+  local = ((local + 540) % 360) - 180;
+  const v = Math.round(b.mirror ? -local : local);
+  state.pose[activeBone] = v; state.poseName = "";
+  const r = $("j-" + activeBone); if (r) { r.value = v; r.nextSibling.textContent = v + "°"; }
+});
+const endDrag = () => { cv.classList.remove("drag"); };
+cv.addEventListener("pointerup", endDrag); cv.addEventListener("pointercancel", endDrag);
+
+const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+function frame(now) {
+  const t = reduce ? 0 : (now - t0) / 1000;
+  last = draw(ctx, cv.width, cv.height, state, { t, bones: $("showBones").checked, active: activeBone });
+  const worn = Object.entries(state.look).filter(([k, v]) => k !== "hairColor" && k !== "hair" && v !== "none").length;
+  $("hudInfo").textContent = `${RIG.bones.length} bones · 착용 ${worn}`;
+  requestAnimationFrame(frame);
+}
+
+/* ---------- 시트 ---------- */
+function sheet() {
+  const items = [
+    ["기본 · 메리야스+빤스", { look: presetLook("base"), mood: "CALM", pose: RIG.poses.idle }],
+    ["기본 · 환영", { look: presetLook("base"), mood: "HAPPY", pose: RIG.poses.welcome }],
+    ["기본 · 손 흔들기", { look: presetLook("base"), mood: "TALKING", pose: RIG.poses.wave }],
+    ["기본 · 만세", { look: presetLook("base"), mood: "HAPPY", pose: RIG.poses.cheer }],
+    ["루미 큐트", { look: presetLook("lumi_cute"), mood: "HAPPY", pose: RIG.poses.welcome }],
+    ["루온 스포티", { look: presetLook("luon_sporty"), mood: "CALM", pose: RIG.poses.welcome }],
+    ["루미 시크", { look: presetLook("lumi_chic"), mood: "CALM", pose: RIG.poses.point }],
+    ["트윈테일 · 핑크 · 티", { look: { ...presetLook("base"), hair: "twin", hairColor: "pink", top: "tee", bottom: "skirt", shoes: "sneakers", acc: "ribbon" }, mood: "LISTENING", pose: RIG.poses.think }],
+  ];
+  const el = $("sheet");
+  for (const [label, st] of items) {
+    const f = document.createElement("figure");
+    const c = document.createElement("canvas"); c.width = 400; c.height = 600;
+    const cap = document.createElement("figcaption"); cap.textContent = label;
+    f.append(c, cap); el.appendChild(f);
+    draw(c.getContext("2d"), c.width, c.height, { ...st, anim: "none" }, { t: 0.4 });
+  }
+}
+
+/* 로컬 PNG 추출용: #shot-<preset>-<pose> 이면 무대만 그린다(뼈대·UI 없음). */
+const shot = location.hash.match(/^#shot-([a-z_]+)-([a-z]+)$/);
+if (shot) {
+  document.body.className = "shot";
+  document.body.style.background = "transparent";
+  document.querySelector(".wrap").innerHTML = '<canvas id="solo" width="1024" height="1536"></canvas>';
+  draw($("solo").getContext("2d"), 1024, 1536, { look: presetLook(shot[1]), mood: "CALM", pose: RIG.poses[shot[2]] || {}, anim: "none" }, { t: 0.4 });
+} else {
+  renderUI(); sheet(); requestAnimationFrame(frame);
+}
+</script>
+
+</body>
+</html>

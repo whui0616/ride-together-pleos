@@ -1,0 +1,13 @@
+대화 분류 모델 (car-pet)
+
+ko-sroberta-multitask.int8.onnx.NN.bin (합치면 하나의 ONNX 파일)
+  원본: jhgan/ko-sroberta-multitask (https://huggingface.co/jhgan/ko-sroberta-multitask)
+        저장소 https://github.com/jhgan00/ko-sentence-transformers — CC BY-SA 4.0
+  바탕 모델: klue/roberta-base (KLUE, https://github.com/KLUE-benchmark/KLUE) — CC BY-SA 4.0
+  변경: 평균 풀링·L2 정규화를 붙여 ONNX(opset 17)로 내보내고 int8 동적 양자화함.
+  이 변경본도 CC BY-SA 4.0 (https://creativecommons.org/licenses/by-sa/4.0/) 을 따른다.
+
+vocab.txt: 위 모델의 어휘 파일 (CC BY-SA 4.0)
+
+head.tsv: 9분류 로지스틱 회귀 가중치. 함께타요 팀이 직접 쓴 문장 414개로 학습함
+  (학습 도구: tools/topic_model). 이 파일도 CC BY-SA 4.0.

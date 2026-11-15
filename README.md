@@ -1,6 +1,6 @@
 # car-pet
 
-팀 함께타요
+팀 함께타요 (ride_together)
 
 내 차에서 함께 자라는 반려 캐릭터. 운전이 복잡할 때는 조용히 있고, 여유가 생기면 먼저 말을 거는 Pleos Connect 앱입니다.
 
@@ -16,8 +16,8 @@
 
 APK가 GitHub 파일 한도(100MB)를 넘어(약 414MB) 저장소의 `apk/` 폴더 대신 GitHub Releases에 올렸습니다.
 
-- 파일 이름: `함께타요_car-pet_release.apk`
-- Release 페이지: https://github.com/whui0616/ride-together-pleos/releases
+- 파일 이름: `ride_together_car-pet_release.apk`
+- Release 페이지: https://github.com/whui0616/ride-together-pleos/releases/tag/v1.0.0
 
 ## 실행 방법
 
@@ -27,7 +27,7 @@ APK가 GitHub 파일 한도(100MB)를 넘어(약 414MB) 저장소의 `apk/` 폴�
 2. Release 페이지에서 받은 APK를 설치합니다.
 
    ```bash
-   adb install -r 함께타요_car-pet_release.apk
+   adb install -r ride_together_car-pet_release.apk
    ```
 
 3. 에뮬레이터 앱 목록에서 **car-pet**을 실행합니다. 처음 실행하면 캐릭터 성별을 고르는 화면이 나옵니다.
